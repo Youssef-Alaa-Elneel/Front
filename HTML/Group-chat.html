@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Rabta Chat - Developer Community</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        rabta: {
+                            light: { bg: '#FAFAFA', surface: '#FFFFFF', primary: '#7C3AED', text: '#171717' },
+                            dark: { bg: '#171717', surface: '#262626', primary: '#8B5CF6', text: '#F5F5F5' }
+                        }
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.3);
+            border-radius: 10px;
+        }
+
+        html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-rabta-light-bg dark:bg-rabta-dark-bg text-rabta-light-text dark:text-rabta-dark-text flex h-screen overflow-hidden font-display transition-colors duration-300">
+
+    <aside
+        class="w-16 flex flex-col items-center py-6 bg-rabta-light-surface dark:bg-rabta-dark-surface border-r border-gray-200 dark:border-gray-800 shrink-0 transition-colors duration-300 z-20 min-h-0 overflow-y-auto hide-scrollbar">
+        <div class="mb-8">
+            <div
+                class="w-10 h-10 bg-rabta-light-primary/10 dark:bg-rabta-dark-primary/20 rounded-xl flex items-center justify-center text-rabta-light-primary dark:text-rabta-dark-primary">
+                <span class="material-icons-round">hub</span>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-6">
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"
+                title="Chats">
+                <span class="material-icons-round">chat_bubble</span>
+            </button>
+            <button
+                class="w-10 h-10 flex items-center justify-center text-rabta-light-primary dark:text-rabta-dark-primary bg-rabta-light-primary/10 dark:bg-rabta-dark-primary/10 rounded-lg transition-colors"
+                title="Groups">
+                <span class="material-icons-round">groups</span>
+            </button>
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"
+                title="Bookmarks">
+                <span class="material-icons-round">bookmarks</span>
+            </button>
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"
+                title="Jobs">
+                <span class="material-icons-round">work_outline</span>
+            </button>
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"
+                title="Calls">
+                <span class="material-icons-round">call</span>
+            </button>
+        </nav>
+        <div class="mt-auto flex flex-col gap-6 items-center">
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors">
+                <span class="material-icons-round">settings</span>
+            </button>
+            <img class="w-10 h-10 rounded-full border-2 border-rabta-light-primary/40 dark:border-rabta-dark-primary/40 object-cover cursor-pointer shrink-0"
+                data-alt="User profile avatar circle"
+                src="https://ui-avatars.com/api/?name=Youssef&background=7C3AED&color=fff&bold=true" />
+        </div>
+    </aside>
+
+    <section
+        class="w-80 flex flex-col border-r border-gray-200 dark:border-gray-800 bg-rabta-light-surface dark:bg-rabta-dark-surface shrink-0 transition-colors duration-300 min-h-0 relative">
+        <div class="p-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <div class="relative mb-4">
+                <span
+                    class="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">search</span>
+                <input
+                    class="w-full pl-9 pr-4 py-2 bg-rabta-light-bg dark:bg-rabta-dark-bg border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-1 focus:ring-rabta-light-primary text-sm placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-all"
+                    placeholder="Search tech hubs..." type="text" />
+            </div>
+
+            <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1">
+                <button
+                    class="px-3 py-1.5 bg-rabta-light-primary text-white text-[11px] font-semibold rounded-full shrink-0">All</button>
+                <button
+                    class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 text-[11px] font-semibold rounded-full shrink-0 transition-colors">Front-End</button>
+                <button
+                    class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 text-[11px] font-semibold rounded-full shrink-0 transition-colors">UI/UX</button>
+                <button
+                    class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 text-[11px] font-semibold rounded-full shrink-0 transition-colors">Back-End</button>
+                <button
+                    class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 text-[11px] font-semibold rounded-full shrink-0 transition-colors">Mobile</button>
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto custom-scrollbar">
+            <div class="px-2 py-4">
+                <div
+                    class="flex items-center gap-3 p-3 bg-rabta-light-primary/10 dark:bg-rabta-dark-primary/10 rounded-xl cursor-pointer mb-1 border-l-4 border-rabta-light-primary dark:border-rabta-dark-primary">
+                    <div class="relative shrink-0">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-rabta-light-primary dark:bg-rabta-dark-primary flex items-center justify-center text-white dark:text-rabta-dark-bg shadow-sm">
+                            <span class="material-icons-round">terminal</span>
+                        </div>
+                        <div
+                            class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-rabta-dark-surface rounded-full">
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-center mb-0.5">
+                            <span class="font-semibold text-sm truncate">Node.js Architecture</span>
+                            <span
+                                class="text-[10px] text-rabta-light-primary dark:text-rabta-dark-primary font-medium">12:45
+                                PM</span>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate font-mono">middleware.use(auth)...
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="flex items-center gap-3 p-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer mb-1 transition-colors">
+                    <div class="shrink-0">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-rabta-light-primary/10 dark:bg-rabta-dark-primary/20 flex items-center justify-center text-rabta-light-primary dark:text-rabta-dark-primary font-bold">
+                            <span class="material-icons-round">javascript</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-center mb-0.5">
+                            <span class="font-semibold text-sm truncate">Frontend Masters</span>
+                            <span class="text-[10px] text-gray-400 dark:text-gray-500">11:20 AM</span>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">Alex: check out this hook</p>
+                    </div>
+                    <div class="shrink-0 flex flex-col items-end gap-1">
+                        <span
+                            class="w-5 h-5 bg-rabta-light-primary dark:bg-rabta-dark-primary text-white dark:text-rabta-dark-bg text-[10px] flex items-center justify-center rounded-full">5</span>
+                    </div>
+                </div>
+                <h3
+                    class="px-3 mt-6 mb-2 text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+                    Other Discussions</h3>
+                <div
+                    class="flex items-center gap-3 p-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer mb-1 transition-colors">
+                    <div class="shrink-0">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white">
+                            <span class="material-icons-round">cloud_queue</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-center mb-0.5">
+                            <span class="font-semibold text-sm truncate">DevOps Hub</span>
+                            <span class="text-[10px] text-gray-400 dark:text-gray-500">09:15 AM</span>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">Pipeline failed in staging...</p>
+                    </div>
+                </div>
+                <div
+                    class="flex items-center gap-3 p-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer mb-1 transition-colors">
+                    <div class="shrink-0">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-gray-800 dark:bg-gray-700 flex items-center justify-center text-white">
+                            <span class="material-icons-round">code</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-center mb-0.5">
+                            <span class="font-semibold text-sm truncate">Open Source Contribs</span>
+                            <span class="text-[10px] text-gray-400 dark:text-gray-500">Yesterday</span>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">Sarah: PR merged! 🎉</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-6 right-6 flex flex-col items-end gap-4 z-50">
+            <div id="ai-popup"
+                class="hidden w-80 bg-white dark:bg-[#262626] rounded-2xl shadow-2xl border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col transition-all duration-300">
+                <div
+                    class="bg-[#7C3AED] dark:bg-[#8B5CF6] p-4 text-white dark:text-[#F5F5F5] flex justify-between items-center transition-colors">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        <span class="font-bold text-sm">Rabta AI</span>
+                    </div>
+                    <button onclick="toggleAI()" class="hover:bg-white/20 p-1 rounded-lg transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div
+                    class="h-48 bg-[#FAFAFA] dark:bg-[#171717] p-4 text-sm text-gray-500 dark:text-[#F5F5F5]/50 italic overflow-y-auto custom-scrollbar">
+                    How can I help you today?
+                </div>
+
+                <div class="p-4 bg-white dark:bg-[#262626] border-t border-gray-100 dark:border-white/10">
+                    <input type="text" placeholder="Type a message..."
+                        class="w-full text-sm p-2.5 rounded-xl bg-gray-50 dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] border border-gray-200 dark:border-white/10 outline-none focus:border-[#7C3AED] dark:focus:border-[#8B5CF6] transition-all">
+                </div>
+            </div>
+
+            <button onclick="toggleAI()"
+                class="w-12 h-12 bg-[#7C3AED] dark:bg-[#8B5CF6] rounded-full flex items-center justify-center text-white dark:text-[#F5F5F5] shadow-xl hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+            </button>
+        </div>
+
+    </section>
+
+    <main
+        class="flex-1 flex flex-col bg-rabta-light-bg dark:bg-rabta-dark-bg transition-colors duration-300 min-h-0 min-w-0">
+        <header id="chat-header"
+            class="h-16 px-6 bg-rabta-light-surface/80 dark:bg-rabta-dark-surface/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 flex items-center justify-between z-10 transition-colors cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 shrink-0">
+            <div class="flex items-center gap-3 min-w-0">
+                <div
+                    class="w-10 h-10 rounded-lg bg-rabta-light-primary dark:bg-rabta-dark-primary flex items-center justify-center text-white dark:text-rabta-dark-bg shadow-sm shrink-0">
+                    <span class="material-icons-round">terminal</span>
+                </div>
+                <div class="min-w-0">
+                    <h2 class="font-bold text-sm leading-tight truncate">Node.js Architecture Support</h2>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 truncate">1,240 members • 89 online</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 text-gray-400 dark:text-gray-500 shrink-0">
+
+                <div
+                    class="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 transition-colors">
+                    <button
+                        class="px-2.5 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors flex items-center justify-center"
+                        title="Start Video Call">
+                        <span class="material-icons-round text-[20px]">videocam</span>
+                    </button>
+                    <div class="w-px h-5 bg-gray-200 dark:bg-gray-700"></div>
+                    <button
+                        class="px-1 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors flex items-center justify-center"
+                        title="Call Options">
+                        <span class="material-icons-round text-[18px]">arrow_drop_down</span>
+                    </button>
+                </div>
+
+                <button
+                    class="hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"><span
+                        class="material-icons-round">search</span></button>
+                <button
+                    class="hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"><span
+                        class="material-icons-round">notifications_none</span></button>
+                <div class="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1"></div>
+                <button
+                    class="hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"><span
+                        class="material-icons-round">more_vert</span></button>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+            <div class="flex gap-3 max-w-2xl">
+                <img class="w-8 h-8 rounded-lg object-cover self-end shadow-sm"
+                    data-alt="Portrait of a male software engineer"
+                    src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" />
+                <div class="flex flex-col gap-1">
+                    <span
+                        class="text-[11px] font-semibold text-rabta-light-primary dark:text-rabta-dark-primary ml-1">@marco_dev</span>
+                    <div
+                        class="bg-rabta-light-surface dark:bg-rabta-dark-surface p-3 rounded-xl rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-800">
+                        <p class="text-sm">Does anyone have a clean pattern for handling Express middleware errors? I'm
+                            getting lost in nested try-catches.</p>
+                        <span class="text-[10px] text-gray-400 dark:text-gray-500 mt-1 block text-right">12:38 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-3 max-w-2xl">
+                <img class="w-8 h-8 rounded-lg object-cover self-end shadow-sm"
+                    data-alt="Portrait of a female developer"
+                    src="https://ui-avatars.com/api/?name=Sophia+Chen&background=ede9fe&color=7c3aed&bold=true" />
+                <div class="flex flex-col gap-1 w-full min-w-0">
+                    <span
+                        class="text-[11px] font-semibold text-rabta-light-primary dark:text-rabta-dark-primary ml-1">@sophia_codes</span>
+                    <div
+                        class="bg-rabta-light-surface dark:bg-rabta-dark-surface p-3 rounded-xl rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-800 space-y-3">
+                        <p class="text-sm">Try using a wrapper for async functions. It'll clean up your route handlers
+                            significantly:</p>
+                        <div
+                            class="bg-gray-900 dark:bg-black rounded-lg p-4 font-mono text-[13px] text-gray-100 overflow-x-auto border border-gray-800 custom-scrollbar">
+                            <pre><code>const asyncHandler = fn => (req, res, next) => {
+  Promise.resolve(fn(req, res, next))
+    .catch(next);
+};
+
+// Usage
+router.get('/', asyncHandler(async (req, res) => {
+  const data = await fetchData();
+  res.json(data);
+}));</code></pre>
+                        </div>
+                        <span class="text-[10px] text-gray-400 dark:text-gray-500 mt-1 block text-right">12:42 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-row-reverse gap-3 max-w-2xl ml-auto">
+                <div class="flex flex-col gap-1 items-end">
+                    <span
+                        class="text-[11px] font-semibold text-rabta-light-primary dark:text-rabta-dark-primary mr-1">You</span>
+                    <div
+                        class="bg-rabta-light-primary dark:bg-rabta-dark-primary text-white dark:text-rabta-dark-bg p-3 rounded-xl rounded-br-none shadow-md">
+                        <p class="text-sm">That's exactly what I needed, Sophia! I'll refactor my middleware with this
+                            pattern. Does this work well with Fastify as well?</p>
+                        <div class="flex items-center justify-end gap-1 mt-1">
+                            <span class="text-[10px] text-white/80 dark:text-rabta-dark-bg/80">12:45 PM</span>
+                            <span
+                                class="material-icons-round text-[14px] text-white/80 dark:text-rabta-dark-bg/80">done_all</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 py-2">
+                <div class="flex-1 h-px bg-gray-200 dark:bg-gray-800"></div>
+                <span
+                    class="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Today</span>
+                <div class="flex-1 h-px bg-gray-200 dark:bg-gray-800"></div>
+            </div>
+        </div>
+
+        <footer
+            class="p-4 bg-rabta-light-surface dark:bg-rabta-dark-surface border-t border-gray-200 dark:border-gray-800 transition-colors shrink-0">
+            <div
+                class="max-w-4xl mx-auto flex items-center gap-3 bg-rabta-light-bg dark:bg-rabta-dark-bg border border-gray-200 dark:border-gray-700 p-2 rounded-xl focus-within:border-rabta-light-primary dark:focus-within:border-rabta-dark-primary transition-colors">
+                <button
+                    class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary rounded-lg transition-colors shrink-0">
+                    <span class="material-icons-round">add_circle_outline</span>
+                </button>
+                <div class="flex-1 min-w-0 px-2">
+                    <input
+                        class="w-full bg-transparent border-none focus:ring-0 text-sm placeholder-gray-400 outline-none"
+                        placeholder="Type a message..." type="text" />
+                </div>
+                <button
+                    class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary rounded-lg transition-colors shrink-0">
+                    <span class="material-icons-round">sentiment_satisfied_alt</span>
+                </button>
+                <button
+                    class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary rounded-lg transition-colors shrink-0">
+                    <span class="material-icons-round">mic</span>
+                </button>
+                <button
+                    class="w-10 h-10 bg-rabta-light-primary dark:bg-rabta-dark-primary text-white dark:text-rabta-dark-bg rounded-lg flex items-center justify-center shadow-md hover:opacity-90 transition-all active:scale-95 shrink-0">
+                    <span class="material-icons-round">send</span>
+                </button>
+            </div>
+        </footer>
+    </main>
+
+    <aside id="group-details-sidebar"
+        class="w-[340px] bg-rabta-light-surface dark:bg-rabta-dark-surface border-l border-gray-200 dark:border-gray-800 hidden flex-col transition-colors duration-300 relative z-10 min-h-0 shrink-0">
+
+        <div
+            class="p-6 pb-4 flex flex-col items-center border-b border-gray-100 dark:border-gray-800 relative shrink-0">
+            <button id="close-sidebar-btn"
+                class="absolute top-4 left-4 text-gray-400 hover:text-red-500 transition-colors">
+                <span class="material-icons-round">close</span>
+            </button>
+
+            <button
+                class="absolute top-4 right-4 text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors">
+                <span class="material-icons-round">edit</span>
+            </button>
+
+            <div
+                class="w-24 h-24 bg-rabta-light-primary/10 dark:bg-rabta-dark-primary/20 rounded-full flex items-center justify-center mb-3 text-rabta-light-primary dark:text-rabta-dark-primary shadow-sm relative">
+                <span class="material-icons-round text-5xl">terminal</span>
+                <div
+                    class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-rabta-light-surface dark:border-rabta-dark-surface rounded-full">
+                </div>
+            </div>
+
+            <h3 class="font-bold text-lg text-center">Node.js Architecture Support</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1,240 members, 89 online</p>
+        </div>
+
+        <div class="px-2 py-2 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <div
+                class="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-colors">
+                <div class="flex flex-col">
+                    <span
+                        class="text-sm font-semibold text-rabta-light-primary dark:text-rabta-dark-primary">rabta.app/join/nodejs-arch</span>
+                    <span class="text-xs text-gray-500 dark:text-gray-400">Invite Link</span>
+                </div>
+                <span class="material-icons-round text-gray-400">qr_code_2</span>
+            </div>
+
+            <div
+                class="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-colors">
+                <div class="flex flex-col">
+                    <span class="text-sm font-semibold">Notifications</span>
+                    <span class="text-xs text-gray-500 dark:text-gray-400">Enabled</span>
+                </div>
+                <button
+                    class="relative inline-flex h-5 w-9 items-center rounded-full bg-rabta-light-primary dark:bg-rabta-dark-primary transition-colors">
+                    <span class="inline-block h-4 w-4 translate-x-4 rounded-full bg-white transition-transform"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex border-b border-gray-100 dark:border-gray-800 overflow-x-auto hide-scrollbar px-2 shrink-0">
+            <button
+                class="flex-1 py-3 text-sm font-semibold text-rabta-light-primary dark:text-rabta-dark-primary border-b-2 border-rabta-light-primary dark:border-rabta-dark-primary whitespace-nowrap">Members</button>
+            <button
+                class="flex-1 py-3 text-sm font-semibold text-gray-500 hover:text-rabta-light-text dark:hover:text-rabta-dark-text whitespace-nowrap transition-colors">Media</button>
+            <button
+                class="flex-1 py-3 text-sm font-semibold text-gray-500 hover:text-rabta-light-text dark:hover:text-rabta-dark-text whitespace-nowrap transition-colors">Links</button>
+            <button
+                class="flex-1 py-3 text-sm font-semibold text-gray-500 hover:text-rabta-light-text dark:hover:text-rabta-dark-text whitespace-nowrap transition-colors relative">
+                Jobs
+                <span class="absolute top-2 right-2 flex h-1.5 w-1.5 rounded-full bg-red-500"></span>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto custom-scrollbar p-2 space-y-1">
+
+            <div
+                class="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-colors text-rabta-light-primary dark:text-rabta-dark-primary mb-2">
+                <div
+                    class="w-10 h-10 rounded-full bg-rabta-light-primary/10 dark:bg-rabta-dark-primary/20 flex items-center justify-center">
+                    <span class="material-icons-round text-xl">person_add</span>
+                </div>
+                <span class="text-sm font-semibold">Add Member</span>
+            </div>
+
+            <div
+                class="flex items-center gap-3 p-2 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-colors">
+                <div class="relative shrink-0">
+                    <img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a developer"
+                        src="https://randomuser.me/api/portraits/men/46.jpg" />
+                    <div
+                        class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white dark:border-rabta-dark-surface rounded-full">
+                    </div>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="text-sm font-semibold truncate">Alex River</p>
+                    <p class="text-[11px] text-rabta-light-primary dark:text-rabta-dark-primary font-medium truncate">
+                        Owner</p>
+                </div>
+            </div>
+
+            <div
+                class="flex items-center gap-3 p-2 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-colors">
+                <div class="relative shrink-0">
+                    <img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a developer"
+                        src="https://ui-avatars.com/api/?name=Sophia+Chen&background=ede9fe&color=7c3aed&bold=true" />
+                    <div
+                        class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white dark:border-rabta-dark-surface rounded-full">
+                    </div>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="text-sm font-semibold truncate">Sophia Chen</p>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 truncate">Admin</p>
+                </div>
+            </div>
+
+            <div
+                class="flex items-center gap-3 p-2 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-colors">
+                <div class="relative opacity-60 shrink-0">
+                    <img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a developer"
+                        src="https://randomuser.me/api/portraits/men/11.jpg" />
+                    <div
+                        class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-gray-400 dark:bg-gray-600 border-2 border-white dark:border-rabta-dark-surface rounded-full">
+                    </div>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="text-sm font-semibold truncate">Marco Rossi</p>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 truncate">last seen recently</p>
+                </div>
+            </div>
+        </div>
+
+        <button
+            class="w-full py-3 mt-auto border-t border-gray-100 dark:border-gray-800 text-[13px] font-semibold text-gray-500 dark:text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-all flex justify-center items-center gap-1.5 shrink-0">
+            More Details
+            <span class="material-icons-round text-[16px]">chevron_right</span>
+        </button>
+
+    </aside>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+        function toggleAI() {
+            document.getElementById('ai-popup').classList.toggle('hidden');
+        }
+
+        const chatHeader = document.getElementById('chat-header');
+        const groupDetailsSidebar = document.getElementById('group-details-sidebar');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+
+        function toggleGroupDetails() {
+            if (groupDetailsSidebar.classList.contains('hidden')) {
+                groupDetailsSidebar.classList.remove('hidden');
+                groupDetailsSidebar.classList.add('flex');
+            } else {
+                groupDetailsSidebar.classList.add('hidden');
+                groupDetailsSidebar.classList.remove('flex');
+            }
+        }
+
+        chatHeader.addEventListener('click', function (e) {
+            // منع تنفيذ الكود لو المستخدم ضغط على أزرار البحث أو الاتصال جوه الهيدر
+            if (e.target.closest('button')) return;
+            toggleGroupDetails();
+        });
+
+        if (closeSidebarBtn) {
+            closeSidebarBtn.addEventListener('click', toggleGroupDetails);
+        }
+    </script>
+</body>
+
+</html>
