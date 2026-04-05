@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Rabta Chats List</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        rabta: {
+                            light: { bg: '#FAFAFA', surface: '#FFFFFF', primary: '#7C3AED', text: '#171717' },
+                            dark: { bg: '#171717', surface: '#262626', primary: '#8B5CF6', text: '#F5F5F5' }
+                        }
+                    },
+                    fontFamily: { "display": ["Inter"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.3);
+            border-radius: 10px;
+        }
+
+        html.dark ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-rabta-light-bg dark:bg-rabta-dark-bg text-rabta-light-text dark:text-rabta-dark-text font-display h-screen flex overflow-hidden transition-colors duration-300">
+
+    <aside
+        class="w-16 flex flex-col items-center py-6 bg-rabta-light-surface dark:bg-rabta-dark-surface border-r border-gray-200 dark:border-gray-800 shrink-0 transition-colors duration-300 z-20 min-h-0 overflow-y-auto hide-scrollbar">
+        <div class="mb-8">
+            <div
+                class="w-10 h-10 bg-rabta-light-primary/10 dark:bg-rabta-dark-primary/20 rounded-xl flex items-center justify-center text-rabta-light-primary dark:text-rabta-dark-primary">
+                <span class="material-icons-round">hub</span>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-6">
+            <button
+                class="w-10 h-10 flex items-center justify-center text-rabta-light-primary dark:text-rabta-dark-primary bg-rabta-light-primary/10 dark:bg-rabta-dark-primary/10 rounded-lg transition-colors"
+                title="Chats">
+                <span class="material-icons-round">chat_bubble</span>
+            </button>
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"
+                title="Groups">
+                <span class="material-icons-round">groups</span>
+            </button>
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"
+                title="Bookmarks">
+                <span class="material-icons-round">bookmarks</span>
+            </button>
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"
+                title="Jobs">
+                <span class="material-icons-round">work_outline</span>
+            </button>
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors"
+                title="Calls">
+                <span class="material-icons-round">call</span>
+            </button>
+        </nav>
+        <div class="mt-auto flex flex-col gap-6 items-center">
+            <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-rabta-light-primary dark:hover:text-rabta-dark-primary transition-colors">
+                <span class="material-icons-round">settings</span>
+            </button>
+            <img class="w-10 h-10 rounded-full border-2 border-rabta-light-primary/40 dark:border-rabta-dark-primary/40 object-cover cursor-pointer shrink-0"
+                data-alt="User profile avatar circle"
+                src="https://ui-avatars.com/api/?name=Youssef&background=7C3AED&color=fff&bold=true" />
+        </div>
+    </aside>
+
+    <aside
+        class="w-[320px] bg-rabta-light-bg dark:bg-rabta-dark-bg flex flex-col h-full border-r border-gray-200 dark:border-gray-800 transition-colors duration-300 z-40 relative min-h-0 shrink-0">
+        <div class="p-4 flex flex-col gap-4 shrink-0">
+            <div class="flex items-center justify-between text-rabta-light-text dark:text-rabta-dark-text">
+                <span class="text-xl font-bold tracking-tight">Rabta</span>
+                <button class="p-1 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-colors">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
+            <div class="relative group">
+                <span
+                    class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 text-sm">search</span>
+                <input
+                    class="w-full bg-rabta-light-surface dark:bg-rabta-dark-surface border border-gray-200 dark:border-gray-800 rounded-lg py-2 pl-10 pr-4 text-rabta-light-text dark:text-rabta-dark-text placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-rabta-light-primary/50 dark:focus:ring-rabta-dark-primary/50 transition-all text-sm focus:outline-none"
+                    placeholder="Search" type="text" />
+            </div>
+        </div>
+        <div class="flex-1 overflow-y-auto sidebar-scroll">
+            <div
+                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 cursor-pointer transition-colors">
+                <div class="relative shrink-0">
+                    <img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a developer man avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW6ItkwKUr4KlBQ51P-gCFRC6MxWH41ny06iQ2LtV9FoQRsSo-pKrce9CPwQrQiivOzrMecOrLybR1kH-xp40FVxZ9CrusaE6oJZq37YUIoDFgUGIrlyA0DeQWOCUXHyWkiWDT2Iag-9WcyTkL6__d64juO7NigKCiN0n8UoJoEqC-dd7-IUigCxsfMGAI7emL13gJeCGVk28QzFR6sRIEQbzgmWk77vTh06zwkU5KBZf8sA5y4L8czqcwPE1-fCMGC-X5VQ6kfTMV" />
+                    <div
+                        class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-rabta-dark-surface rounded-full">
+                    </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="text-rabta-light-text dark:text-rabta-dark-text font-semibold text-sm truncate">David
+                            Chen</h3>
+                        <span class="text-gray-400 dark:text-gray-500 text-xs">10:42 AM</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs truncate">The PR for the dashboard is ready...
+                    </p>
+                </div>
+            </div>
+            <div
+                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 cursor-pointer transition-colors">
+                <div
+                    class="w-12 h-12 shrink-0 rounded-full bg-rabta-light-primary/10 dark:bg-rabta-dark-primary/20 flex items-center justify-center text-rabta-light-primary dark:text-rabta-dark-primary font-bold text-sm">
+                    TL </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="text-rabta-light-text dark:text-rabta-dark-text font-semibold text-sm truncate">Tech
+                            Lead Sync</h3>
+                        <span class="text-gray-400 dark:text-gray-500 text-xs">9:15 AM</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs truncate">Alex: Meeting in 5 minutes guys.</p>
+                </div>
+            </div>
+            <div
+                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 cursor-pointer transition-colors">
+                <img class="w-12 h-12 shrink-0 rounded-full object-cover" data-alt="Portrait of a designer man avatar"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW6ItkwKUr4KlBQ51P-gCFRC6MxWH41ny06iQ2LtV9FoQRsSo-pKrce9CPwQrQiivOzrMecOrLybR1kH-xp40FVxZ9CrusaE6oJZq37YUIoDFgUGIrlyA0DeQWOCUXHyWkiWDT2Iag-9WcyTkL6__d64juO7NigKCiN0n8UoJoEqC-dd7-IUigCxsfMGAI7emL13gJeCGVk28QzFR6sRIEQbzgmWk77vTh06zwkU5KBZf8sA5y4L8czqcwPE1-fCMGC-X5VQ6kfTMV" />
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="text-rabta-light-text dark:text-rabta-dark-text font-semibold text-sm truncate">
+                            Marcus Riley</h3>
+                        <span class="text-gray-400 dark:text-gray-500 text-xs">Yesterday</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs truncate">Check out these new UI mocks.</p>
+                </div>
+            </div>
+            <div
+                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 cursor-pointer transition-colors">
+                <div
+                    class="w-12 h-12 shrink-0 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400 font-bold text-sm">
+                    G </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="text-rabta-light-text dark:text-rabta-dark-text font-semibold text-sm truncate">
+                            General Channel</h3>
+                        <span class="text-gray-400 dark:text-gray-500 text-xs">Mon</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs truncate">Welcome to the Rabta community!</p>
+                </div>
+            </div>
+            <div
+                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 cursor-pointer transition-colors">
+                <img class="w-12 h-12 shrink-0 rounded-full object-cover" data-alt="Portrait of a software engineer man"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW6ItkwKUr4KlBQ51P-gCFRC6MxWH41ny06iQ2LtV9FoQRsSo-pKrce9CPwQrQiivOzrMecOrLybR1kH-xp40FVxZ9CrusaE6oJZq37YUIoDFgUGIrlyA0DeQWOCUXHyWkiWDT2Iag-9WcyTkL6__d64juO7NigKCiN0n8UoJoEqC-dd7-IUigCxsfMGAI7emL13gJeCGVk28QzFR6sRIEQbzgmWk77vTh06zwkU5KBZf8sA5y4L8czqcwPE1-fCMGC-X5VQ6kfTMV" />
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="text-rabta-light-text dark:text-rabta-dark-text font-semibold text-sm truncate">Elias
+                            K.</h3>
+                        <span class="text-gray-400 dark:text-gray-500 text-xs">Sat</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs truncate">The release notes look good.</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main
+        class="flex-1 flex flex-col bg-rabta-light-bg dark:bg-rabta-dark-bg transition-colors duration-300 min-h-0 min-w-0 items-center justify-center relative">
+        <div class="flex flex-col items-center justify-center text-center p-8 max-w-md opacity-80">
+            <div
+                class="w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6 shadow-inner transition-colors">
+                <span class="material-icons-round text-6xl text-gray-400 dark:text-gray-500">chat</span>
+            </div>
+            <h2 class="text-2xl font-bold text-rabta-light-text dark:text-rabta-dark-text mb-3">Your Messages</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">
+                Select a chat from the list to start messaging, or start a new conversation.
+            </p>
+            <button onclick="toggleNewMessageModal()"
+                class="px-6 py-2.5 bg-rabta-light-primary dark:bg-rabta-dark-primary text-white dark:text-rabta-dark-bg rounded-xl font-medium shadow-md hover:opacity-90 transition-all flex items-center gap-2">
+                <span class="material-icons-round text-sm">edit</span>
+                New Message
+            </button>
+        </div>
+    </main>
+
+    <div class="fixed bottom-6 right-6 flex flex-col items-end gap-4 z-[100]">
+        <div id="ai-popup"
+            class="hidden w-80 bg-white dark:bg-[#262626] rounded-2xl shadow-2xl border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col transition-all duration-300">
+            <div
+                class="bg-[#7C3AED] dark:bg-[#8B5CF6] p-4 text-white dark:text-[#F5F5F5] flex justify-between items-center transition-colors">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span class="font-bold text-sm">Rabta AI</span>
+                </div>
+                <button onclick="toggleAI()" class="hover:bg-white/20 p-1 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <div
+                class="h-48 bg-[#FAFAFA] dark:bg-[#171717] p-4 text-sm text-gray-500 dark:text-[#F5F5F5]/50 italic overflow-y-auto custom-scrollbar">
+                How can I help you today?
+            </div>
+
+            <div class="p-4 bg-white dark:bg-[#262626] border-t border-gray-100 dark:border-white/10">
+                <input type="text" placeholder="Type a message..."
+                    class="w-full text-sm p-2.5 rounded-xl bg-gray-50 dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] border border-gray-200 dark:border-white/10 outline-none focus:border-[#7C3AED] dark:focus:border-[#8B5CF6] transition-all">
+            </div>
+        </div>
+
+        <button onclick="toggleAI()"
+            class="w-12 h-12 bg-[#7C3AED] dark:bg-[#8B5CF6] rounded-full flex items-center justify-center text-white dark:text-[#F5F5F5] shadow-xl hover:scale-110 transition-transform">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="newMessageModal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleNewMessageModal()">
+        </div>
+
+        <div
+            class="bg-rabta-light-surface dark:bg-rabta-dark-surface w-full max-w-md rounded-2xl shadow-2xl relative z-10 flex flex-col max-h-[85vh] overflow-hidden transform transition-all">
+
+            <div class="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+                <h3 class="font-bold text-lg text-rabta-light-text dark:text-rabta-dark-text">New Message</h3>
+                <button onclick="toggleNewMessageModal()"
+                    class="text-gray-400 hover:text-red-500 transition-colors p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <span class="material-icons-round text-xl">close</span>
+                </button>
+            </div>
+
+            <div class="p-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+                <div class="relative">
+                    <span
+                        class="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">search</span>
+                    <input type="text" placeholder="Search contacts..."
+                        class="w-full pl-9 pr-4 py-2.5 bg-rabta-light-bg dark:bg-rabta-dark-bg border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-1 focus:ring-rabta-light-primary text-sm placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-all">
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto custom-scrollbar p-2">
+                <h4 class="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+                    Suggested Contacts</h4>
+
+                <div
+                    class="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-colors group">
+                    <img class="w-11 h-11 rounded-full object-cover"
+                        src="https://ui-avatars.com/api/?name=Ahmed+Hassan&background=7C3AED&color=fff&bold=true"
+                        alt="User">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-semibold text-rabta-light-text dark:text-rabta-dark-text truncate">Ahmed
+                            Hassan</h4>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 truncate">Backend Developer @ ITI</p>
+                    </div>
+                </div>
+
+                <div
+                    class="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-colors group">
+                    <img class="w-11 h-11 rounded-full object-cover"
+                        src="https://randomuser.me/api/portraits/men/46.jpg" alt="User">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-semibold text-rabta-light-text dark:text-rabta-dark-text truncate">Nour
+                            El-Din</h4>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 truncate">UI/UX Designer</p>
+                    </div>
+                </div>
+
+                <div
+                    class="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-xl cursor-pointer transition-colors group">
+                    <img class="w-11 h-11 rounded-full object-cover"
+                        src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-semibold text-rabta-light-text dark:text-rabta-dark-text truncate">
+                            Kareem Mohamed</h4>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 truncate">Flutter Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+        function toggleAI() {
+            document.getElementById('ai-popup').classList.toggle('hidden');
+        }
+
+        // دالة لفتح وقفل الـ Modal
+        function toggleNewMessageModal() {
+            const modal = document.getElementById('newMessageModal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>

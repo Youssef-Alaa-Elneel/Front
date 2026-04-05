@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Profile - Rabta App</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <style>
+    /* لإخفاء الـ Scrollbar من الـ Sidebar مع الاحتفاظ بخاصية السكرول */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #7C3AED; border-radius: 10px; }
+  </style>
+</head>
+<body class="bg-[#FAFAFA] dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] font-sans antialiased transition-colors duration-300 selection:bg-[#7C3AED] selection:text-white dark:selection:bg-[#8B5CF6] overflow-hidden">
+
+  <div class="flex h-screen w-full">
+
+  <aside class="w-[72px] sm:w-20 flex flex-col items-center py-6 bg-white dark:bg-[#1E1E1E] border-r border-[#1F1F1F]/5 dark:border-[#F5F5F5]/5 shrink-0 transition-colors duration-300 z-20 h-full hide-scrollbar">
+      
+      <div class="flex flex-col items-center gap-5 w-full">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-[#7C3AED]/10 dark:bg-[#8B5CF6]/20 rounded-2xl flex items-center justify-center text-[#7C3AED] dark:text-[#8B5CF6] shadow-sm">
+            <span class="material-icons-round text-2xl">hub</span>
+          </div>
+        </div>
+
+        <button class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 rounded-2xl transition-all duration-300" title="Chats">
+          <span class="material-icons-round text-2xl">chat_bubble_outline</span>
+        </button>
+
+        <button class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 rounded-2xl transition-all duration-300" title="Community">
+          <span class="material-icons-round text-2xl">groups</span>
+        </button>
+
+        <button class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 rounded-2xl transition-all duration-300" title="Saved">
+          <span class="material-icons-round text-2xl">bookmark_border</span>
+        </button>
+
+        <button class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 rounded-2xl transition-all duration-300" title="Jobs">
+          <span class="material-icons-round text-2xl">work_outline</span>
+        </button>
+                <button
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 rounded-2xl transition-all duration-300""
+                title="Calls">
+                <span class="material-icons-round">call</span>
+            </button>
+      </div>
+
+      <div class="mt-auto flex flex-col items-center gap-5 w-full">
+        
+        <button class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 rounded-2xl transition-all duration-300" title="Settings">
+          <span class="material-icons-round text-2xl">settings</span>
+        </button>
+
+        <button class="w-11 h-11 flex items-center justify-center bg-[#7C3AED] dark:bg-[#8B5CF6] text-white rounded-full shadow-md border-2 border-white dark:border-[#1E1E1E] transition-transform hover:scale-105" title="My Profile">
+          <span class="text-sm font-bold tracking-wider">YO</span>
+        </button>
+      </div>
+
+    </aside>
+
+    <main class="flex-1 overflow-y-auto relative custom-scrollbar">
+      <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col lg:flex-row gap-8">
+        
+        <aside class="w-full lg:w-[35%] flex flex-col gap-6">
+          
+          <div class="bg-[#FFFFFF] dark:bg-[#262626] rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-8 flex flex-col items-center text-center">
+            <img 
+              src="https://ui-avatars.com/api/?name=Front+End&background=7C3AED&color=fff&size=256" 
+              alt="Profile Picture" 
+              class="w-32 h-32 rounded-full mb-4 object-cover border-4 border-[#FAFAFA] dark:border-[#171717] shadow-sm"
+            >
+            <h1 class="text-2xl font-bold mb-1">Ahmed Developer</h1>
+            <h2 class="text-lg text-[#7C3AED] dark:text-[#8B5CF6] font-medium mb-2">Front-End Developer</h2>
+            <p class="text-sm mb-4 opacity-80 flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              Aswan, Egypt
+            </p>
+            <p class="text-sm mb-6 leading-relaxed">
+              Passionate about crafting intuitive, scalable web interfaces. Specialized in modern tooling and dedicated to delivering seamless digital experiences for communities and beyond.
+            </p>
+            
+            <div class="flex flex-row gap-4 mb-6">
+              <a href="#" class="text-[#171717] hover:text-[#7C3AED] dark:text-[#F5F5F5] dark:hover:text-[#8B5CF6] transition-colors duration-300" aria-label="GitHub">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+              </a>
+              <a href="#" class="text-[#171717] hover:text-[#7C3AED] dark:text-[#F5F5F5] dark:hover:text-[#8B5CF6] transition-colors duration-300" aria-label="LinkedIn">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="#" class="text-[#171717] hover:text-[#7C3AED] dark:text-[#F5F5F5] dark:hover:text-[#8B5CF6] transition-colors duration-300" aria-label="Portfolio">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+              </a>
+            </div>
+            
+            <a href="mailto:hello@example.com" class="w-full bg-[#7C3AED] hover:bg-opacity-90 dark:bg-[#8B5CF6] text-white py-3 px-4 rounded-xl font-medium transition-all duration-300 shadow-sm">
+              Let's Connect
+            </a>
+          </div>
+
+          <div class="bg-[#FFFFFF] dark:bg-[#262626] rounded-xl shadow-md p-8 transition-colors duration-300">
+            <h3 class="text-2xl font-bold mb-3">Technical Skills</h3>
+            <div class="w-12 h-1 bg-[#7C3AED] dark:bg-[#8B5CF6] rounded-full mb-6"></div>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-[#7C3AED]/10 text-[#7C3AED] dark:bg-[#8B5CF6]/20 dark:text-[#8B5CF6] rounded-full px-4 py-2 text-sm font-semibold transition-colors">HTML5</span>
+              <span class="bg-[#7C3AED]/10 text-[#7C3AED] dark:bg-[#8B5CF6]/20 dark:text-[#8B5CF6] rounded-full px-4 py-2 text-sm font-semibold transition-colors">CSS3</span>
+              <span class="bg-[#7C3AED]/10 text-[#7C3AED] dark:bg-[#8B5CF6]/20 dark:text-[#8B5CF6] rounded-full px-4 py-2 text-sm font-semibold transition-colors">Tailwind CSS</span>
+              <span class="bg-[#7C3AED]/10 text-[#7C3AED] dark:bg-[#8B5CF6]/20 dark:text-[#8B5CF6] rounded-full px-4 py-2 text-sm font-semibold transition-colors">JavaScript</span>
+              <span class="bg-[#7C3AED]/10 text-[#7C3AED] dark:bg-[#8B5CF6]/20 dark:text-[#8B5CF6] rounded-full px-4 py-2 text-sm font-semibold transition-colors">React</span>
+              <span class="bg-[#7C3AED]/10 text-[#7C3AED] dark:bg-[#8B5CF6]/20 dark:text-[#8B5CF6] rounded-full px-4 py-2 text-sm font-semibold transition-colors">Git / GitHub</span>
+            </div>
+          </div>
+
+        </aside>
+
+        <main class="w-full lg:w-[65%] flex flex-col gap-8">
+          
+          <section class="bg-[#FFFFFF] dark:bg-[#262626] rounded-xl shadow-md p-8 transition-colors duration-300">
+            <h3 class="text-2xl font-bold mb-3">About Me</h3>
+            <div class="w-12 h-1 bg-[#7C3AED] dark:bg-[#8B5CF6] rounded-full mb-6"></div>
+            <p class="leading-relaxed mb-4 text-[#171717] dark:text-[#F5F5F5]">
+              I am a dedicated Front-End Engineer with a strong foundation in translating complex requirements into highly functional, user-centric web applications. My approach focuses on writing clean, semantic HTML and utilizing modern CSS frameworks to build responsive layouts that look great on any device.
+            </p>
+            <p class="leading-relaxed text-[#171717] dark:text-[#F5F5F5]">
+              I thrive in collaborative environments where I can work closely with teams to architect robust user interfaces. I'm currently expanding my expertise in component-based architectures to prepare for scalable, state-driven applications.
+            </p>
+          </section>
+
+          <section>
+            <h3 class="text-2xl font-bold mb-3 px-2">Featured Projects</h3>
+            <div class="w-12 h-1 bg-[#7C3AED] dark:bg-[#8B5CF6] rounded-full mb-6 mx-2"></div>
+            
+            <div class="grid grid-cols-1 gap-6">
+              <article class="bg-[#FFFFFF] dark:bg-[#262626] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col md:flex-row gap-6 items-start md:items-center">
+                <div class="flex-grow">
+                  <h4 class="text-xl font-bold mb-2">TechGrad Network Hub</h4>
+                  <p class="text-sm opacity-80 mb-4 leading-relaxed">
+                    A real-time communication and networking platform designed specifically for young technology graduates. Features lightning-fast messaging capabilities, peer discovery, and a responsive interface engineered with HTML and Tailwind CSS.
+                  </p>
+                  <div class="flex flex-wrap gap-3 mt-auto">
+                    <button class="bg-[#7C3AED] hover:bg-opacity-90 dark:bg-[#8B5CF6] text-white px-5 py-2 rounded-lg text-sm font-medium transition-all shadow-sm">View Project</button>
+                    <button class="border border-[#7C3AED] dark:border-[#8B5CF6] text-[#7C3AED] dark:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 px-5 py-2 rounded-lg text-sm font-medium transition-all">GitHub Repo</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="bg-[#FFFFFF] dark:bg-[#262626] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col md:flex-row gap-6 items-start md:items-center">
+                <div class="flex-grow">
+                  <h4 class="text-xl font-bold mb-2">E-Commerce Dashboard</h4>
+                  <p class="text-sm opacity-80 mb-4 leading-relaxed">
+                    A modern administrative dashboard template providing detailed analytics, inventory tracking, and sales management. Focused on accessible, high-contrast data visualization.
+                  </p>
+                  <div class="flex flex-wrap gap-3 mt-auto">
+                    <button class="bg-[#7C3AED] hover:bg-opacity-90 dark:bg-[#8B5CF6] text-white px-5 py-2 rounded-lg text-sm font-medium transition-all shadow-sm">View Project</button>
+                    <button class="border border-[#7C3AED] dark:border-[#8B5CF6] text-[#7C3AED] dark:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 px-5 py-2 rounded-lg text-sm font-medium transition-all">GitHub Repo</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+        </main>
+      </div>
+    </main>
+
+  </div>
+
+  <div class="fixed bottom-6 right-6 flex flex-col items-end gap-4 z-50">
+    <div id="ai-popup" class="hidden w-80 bg-white dark:bg-[#262626] rounded-2xl shadow-2xl border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col transition-all duration-300">
+        <div class="bg-[#7C3AED] dark:bg-[#8B5CF6] p-4 text-white dark:text-[#F5F5F5] flex justify-between items-center transition-colors">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                <span class="font-bold text-sm">Rabta AI</span>
+            </div>
+            <button onclick="toggleAI()" class="hover:bg-white/20 p-1 rounded-lg transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="h-48 bg-[#FAFAFA] dark:bg-[#171717] p-4 text-sm text-gray-500 dark:text-[#F5F5F5]/50 italic overflow-y-auto custom-scrollbar">
+            How can I help you today?
+        </div>
+
+        <div class="p-4 bg-white dark:bg-[#262626] border-t border-gray-100 dark:border-white/10">
+            <input type="text" placeholder="Type a message..." 
+                   class="w-full text-sm p-2.5 rounded-xl bg-gray-50 dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] border border-gray-200 dark:border-white/10 outline-none focus:border-[#7C3AED] dark:focus:border-[#8B5CF6] transition-all">
+        </div>
+    </div>
+
+    <button onclick="toggleAI()" class="w-12 h-12 bg-[#7C3AED] dark:bg-[#8B5CF6] rounded-full flex items-center justify-center text-white dark:text-[#F5F5F5] shadow-xl hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+    </button>
+  </div>
+
+  <script>
+    function toggleTheme() {
+        document.documentElement.classList.toggle('dark');
+    }
+    function toggleAI() {
+        document.getElementById('ai-popup').classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>

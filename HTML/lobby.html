@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabta | Tech Community Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { light: '#7C3AED', dark: '#8B5CF6' },
+                        surface: { light: '#FFFFFF', dark: '#262626' },
+                        background: { light: '#FAFAFA', dark: '#171717' },
+                        textPrimary: { light: '#171717', dark: '#F5F5F5' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #7C3AED; border-radius: 10px; }
+        .transition-theme { transition: background-color 0.2s ease, color 0.2s ease; }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden bg-background-light dark:bg-background-dark text-textPrimary-light dark:text-textPrimary-dark transition-theme">
+<main class="flex-1 flex flex-col items-center justify-center relative bg-[#FAFAFA] dark:bg-[#171717] transition-theme overflow-y-auto custom-scrollbar p-6">
+    
+    <div class="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-7 flex flex-col gap-4">
+            <div class="w-full aspect-video bg-gray-900 rounded-[24px] relative overflow-hidden shadow-lg border border-gray-200 dark:border-white/10 group">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover opacity-95 transition-opacity" alt="Your Camera" />
+                
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/60"></div>
+
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4">
+                    <button class="w-14 h-14 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-white border border-white/10 hover:bg-white/30 transition-all shadow-lg" title="Turn off microphone">
+                        <span class="material-icons-round text-[24px]">mic</span>
+                    </button>
+                    
+                    <button class="w-14 h-14 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-white border border-white/10 hover:bg-white/30 transition-all shadow-lg" title="Turn off camera">
+                        <span class="material-icons-round text-[24px]">videocam</span>
+                    </button>
+
+                    <button class="w-12 h-12 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-md text-white/80 border border-white/10 hover:bg-white/20 hover:text-white transition-all shadow-lg ml-2" title="Visual Effects">
+                        <span class="material-icons-round text-[20px]">auto_awesome</span>
+                    </button>
+                </div>
+
+                <div class="absolute bottom-6 left-6 flex items-center gap-1.5">
+                    <span class="w-1.5 h-3 bg-green-400 rounded-full animate-bounce"></span>
+                    <span class="w-1.5 h-4 bg-green-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+                    <span class="w-1.5 h-2 bg-green-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-medium">
+                <span class="material-icons-round text-[18px] text-green-500">check_circle</span>
+                Your microphone and camera are working properly.
+            </div>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col bg-white dark:bg-[#262626] p-8 lg:p-10 rounded-[24px] shadow-sm border border-gray-100 dark:border-white/5 transition-colors">
+            
+            <h1 class="text-3xl font-bold text-[#171717] dark:text-[#F5F5F5] mb-2">ITI Front-End Project Sync</h1>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-8 flex items-center gap-2">
+                <span class="material-icons-round text-[18px]">schedule</span>
+                Scheduled for 10:00 AM – 11:30 AM
+            </p>
+
+            <div class="mb-8">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">Ready to join?</h3>
+                <div class="flex items-center gap-4 bg-gray-50 dark:bg-[#171717] p-4 rounded-2xl border border-gray-100 dark:border-white/5 transition-colors">
+                    <div class="flex -space-x-3 shrink-0">
+                        <img class="w-10 h-10 rounded-full border-2 border-white dark:border-[#171717] object-cover transition-colors" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" alt="User 1">
+                        <img class="w-10 h-10 rounded-full border-2 border-white dark:border-[#171717] object-cover transition-colors" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop" alt="User 2">
+                        <div class="w-10 h-10 rounded-full border-2 border-white dark:border-[#171717] bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-300 transition-colors">+2</div>
+                    </div>
+                    <p class="text-sm text-[#171717] dark:text-[#F5F5F5] font-medium leading-tight">Sarah, David, and 2 others are in the call.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <button class="w-full py-3.5 bg-[#7C3AED] dark:bg-[#8B5CF6] text-white rounded-xl font-bold text-base shadow-lg shadow-purple-500/20 hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                    <span class="material-icons-round text-[20px]">login</span>
+                    Join Now
+                </button>
+                <button class="w-full py-3.5 bg-transparent border-2 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 rounded-xl font-bold text-base hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center justify-center gap-2">
+                    <span class="material-icons-round text-[20px]">present_to_all</span>
+                    Present
+                </button>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-100 dark:border-white/5 flex items-center justify-between text-sm">
+                <button class="text-gray-500 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] font-medium transition-colors flex items-center gap-1.5">
+                    <span class="material-icons-round text-[18px]">settings_voice</span>
+                    Check audio & video
+                </button>
+                <button class="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center text-gray-500 hover:text-[#7C3AED] transition-colors">
+                    <span class="material-icons-round text-[18px]">more_vert</span>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+  
+</body>
+</html>
