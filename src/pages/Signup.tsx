@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Input } from '../components/ui/Input';
+import { Button } from '../components/ui/Button';
 
 export const Signup = () => {
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-   
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] transition-colors duration-300">
+      
+      {/* Header */}
       <header className="w-full py-4 px-6 shadow-sm bg-[#FFFFFF] dark:bg-[#262626] transition-colors duration-300">
         <div className="flex items-center justify-between">
-          <Link to="/login" className="hover:opacity-80 transition-opacity">
+          <Link to="/login" className="hover:opacity-80 transition-opacity text-[#7C3AED] dark:text-[#8B5CF6]">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
             </svg>
@@ -22,6 +31,7 @@ export const Signup = () => {
         </div>
       </header>
 
+      {/* Main Form Content */}
       <main className="flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-md">
           <div className="bg-[#FFFFFF] dark:bg-[#262626] rounded-2xl shadow-lg p-8 transition-colors duration-300 border border-gray-100 dark:border-gray-800">
@@ -73,12 +83,11 @@ export const Signup = () => {
                 required 
               />
 
-              <button 
-                type="submit"
-                className="w-full mt-2 py-3 px-4 rounded-lg font-medium transition-opacity hover:opacity-90 bg-[#7C3AED] dark:bg-[#8B5CF6] text-white dark:text-[#F5F5F5]"
-              >
-                Sign Up
-              </button>
+              <div className="pt-2">
+                <Button type="submit" isLoading={loading}>
+                  Sign Up
+                </Button>
+              </div>
 
             </form>
 
@@ -90,6 +99,7 @@ export const Signup = () => {
                 </Link>
               </p>
             </div>
+            
           </div>
         </div>
       </main>
