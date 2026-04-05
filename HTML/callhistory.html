@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabta | History Calls & Meetings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { light: '#7C3AED', dark: '#8B5CF6' },
+                        surface: { light: '#FFFFFF', dark: '#262626' },
+                        background: { light: '#FAFAFA', dark: '#171717' },
+                        textPrimary: { light: '#171717', dark: '#F5F5F5' }
+                    }
+                }
+            }
+        }
+        
+        // ضبط الثيم مبدئياً
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #7C3AED; border-radius: 10px; }
+        .transition-theme { transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden bg-background-light dark:bg-background-dark text-textPrimary-light dark:text-textPrimary-dark transition-theme">
+
+    <aside class="w-16 h-screen flex flex-col items-center py-6 bg-white dark:bg-[#171717] border-r border-gray-100 dark:border-white/5 shrink-0 transition-colors duration-300 z-20 overflow-y-auto no-scrollbar">
+        <div class="mb-8">
+            <div class="w-11 h-11 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center text-purple-600 dark:text-purple-400 cursor-pointer hover:scale-105 transition-transform">
+                <span class="material-icons-round text-[26px]">hub</span>
+            </div>
+        </div>
+
+        <nav class="flex flex-col items-center gap-5 w-full">
+            <button class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-2xl transition-all" title="Chats">
+                <span class="material-icons-round text-[24px]">chat_bubble</span>
+            </button>
+            <button class="w-11 h-11 bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 rounded-2xl transition-all" title="Communities">
+            <span class="material-icons-round text-[26px]">groups</span>
+            </button>
+            <button class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-2xl transition-all" title="Saved">
+            <span class="material-icons-round text-[24px]">bookmarks</span>
+            </button>
+            <button class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-2xl transition-all" title="Jobs">
+            <span class="material-icons-round text-[24px]">work_outline</span>
+            </button>
+            <button class="w-11 h-11 bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 rounded-2xl transition-all" title="Calls">
+            <span class="material-icons-round text-[24px]">call</span>
+            </button>
+        </nav>
+
+        <div class="flex flex-col items-center gap-6 mt-auto pb-4">
+            <button class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-2xl transition-all" title="Settings">
+                <span class="material-icons-round text-[24px]">settings</span>
+            </button>
+            <div class="w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center text-white text-[12px] font-bold ring-2 ring-purple-200 dark:ring-purple-900 ring-offset-2 ring-offset-white dark:ring-offset-[#171717] cursor-pointer hover:ring-purple-400 transition-all">
+                YO
+            </div>
+        </div>
+    </aside>
+
+    <aside class="w-[280px] bg-white dark:bg-surface-dark border-r border-gray-100 dark:border-white/5 flex flex-col transition-theme shrink-0 z-10">
+        <div class="p-4 flex items-center justify-between">
+            <h2 class="text-xl font-bold tracking-tight">Calls</h2>
+            <button class="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:text-brand-light hover:bg-gray-50 dark:hover:bg-white/5 transition-all">
+                <span class="material-icons-round text-[20px]">add_call</span>
+            </button>
+        </div>
+        
+        <div class="px-4 mb-3">
+            <div class="relative flex items-center bg-gray-50 dark:bg-background-dark rounded-xl px-3 py-1.5 border border-gray-100 dark:border-white/5 focus-within:border-brand-light transition-all shadow-sm">
+                <span class="material-icons-round text-[18px] text-gray-400">search</span>
+                <input type="text" placeholder="Search calls..." class="bg-transparent text-sm p-1 ml-2 outline-none w-full text-textPrimary-light dark:text-textPrimary-dark">
+            </div>
+        </div>
+        
+        <div class="px-4 pb-3 mb-2 border-b border-gray-100 dark:border-white/5 flex items-center gap-2">
+            <button class="px-4 py-1.5 rounded-full bg-[#7C3AED] dark:bg-[#8B5CF6] text-white text-[11px] font-bold shadow-sm">All</button>
+            <button class="px-4 py-1.5 rounded-full bg-gray-50 dark:bg-[#171717] text-gray-500 dark:text-gray-300 text-[11px] font-medium border border-gray-100 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Missed</button>
+            <button class="px-4 py-1.5 rounded-full bg-gray-50 dark:bg-[#171717] text-gray-500 dark:text-gray-300 text-[11px] font-medium border border-gray-100 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Meetings</button>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto custom-scrollbar">
+            
+            <div class="px-4 py-3 flex items-center gap-3 bg-brand-light/5 dark:bg-brand-dark/10 border-l-4 border-brand-light cursor-pointer">
+                <div class="relative">
+                    <img src="https://i.pravatar.cc/150?u=sarah" class="w-12 h-12 rounded-full border border-gray-100 dark:border-white/10" />
+                    <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-white dark:bg-[#262626] rounded-full flex items-center justify-center border border-gray-100 dark:border-white/10">
+                        <span class="material-icons-round text-[12px] text-gray-500">videocam</span>
+                    </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h4 class="font-bold text-sm text-red-500 truncate">Sarah Ahmed</h4>
+                        <span class="text-[10px] text-brand-light dark:text-brand-dark font-bold">10:42 AM</span>
+                    </div>
+                    <div class="flex items-center gap-1 mt-0.5">
+                        <span class="material-icons-round text-[14px] text-red-500">call_missed</span>
+                        <p class="text-xs text-gray-500 truncate">Missed Video Call</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-4 py-3 flex items-center gap-3 border-l-4 border-transparent hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition-colors">
+                <div class="relative">
+                    <img src="https://i.pravatar.cc/150?u=david" class="w-12 h-12 rounded-full border border-gray-100 dark:border-white/10" />
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h4 class="font-bold text-sm truncate text-textPrimary-light dark:text-textPrimary-dark">David Chen</h4>
+                        <span class="text-[10px] text-gray-400 font-medium">Yesterday</span>
+                    </div>
+                    <div class="flex items-center gap-1 mt-0.5">
+                        <span class="material-icons-round text-[14px] text-green-500">call_made</span>
+                        <p class="text-xs text-gray-500 truncate">Outgoing Call (15:20)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-4 py-3 flex items-center gap-3 border-l-4 border-transparent hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition-colors">
+                <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold flex items-center justify-center border border-gray-100 dark:border-white/10 shrink-0">
+                    <span class="material-icons-round text-[20px]">groups</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h4 class="font-bold text-sm truncate text-textPrimary-light dark:text-textPrimary-dark">Front-End Sync</h4>
+                        <span class="text-[10px] text-gray-400 font-medium">Monday</span>
+                    </div>
+                    <div class="flex items-center gap-1 mt-0.5">
+                        <span class="material-icons-round text-[14px] text-blue-500">call_received</span>
+                        <p class="text-xs text-gray-500 truncate">Group Meeting (45:00)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col relative bg-background-light dark:bg-background-dark transition-theme overflow-y-auto">
+        
+        <header class="p-4 md:p-6 bg-white dark:bg-surface-dark border-b border-gray-100 dark:border-white/5 flex items-center justify-between shrink-0">
+            <h2 class="text-lg font-bold">Call Info</h2>
+            <div class="flex gap-2">
+                <button class="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-gray-50 dark:hover:bg-white/5 transition-all">
+                    <span class="material-icons-round text-[20px]">chat</span>
+                </button>
+                <button class="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-all">
+                    <span class="material-icons-round text-[20px]">delete_outline</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="flex flex-col items-center py-10 px-4 border-b border-gray-100 dark:border-white/5">
+            <img src="https://i.pravatar.cc/150?u=sarah" class="w-28 h-28 rounded-full border-4 border-white dark:border-[#262626] shadow-lg mb-4" />
+            <h1 class="text-2xl font-bold mb-1">Sarah Ahmed</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">ITI Tech Lead • Cairo</p>
+            
+            <div class="flex gap-6">
+                <button class="flex flex-col items-center gap-2 group">
+                    <div class="w-14 h-14 rounded-full bg-[#7C3AED]/10 dark:bg-[#8B5CF6]/20 text-[#7C3AED] dark:text-[#8B5CF6] flex items-center justify-center group-hover:bg-[#7C3AED] group-hover:text-white transition-all shadow-sm">
+                        <span class="material-icons-round text-[24px]">call</span>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-600 dark:text-gray-300">Voice</span>
+                </button>
+                <button class="flex flex-col items-center gap-2 group">
+                    <div class="w-14 h-14 rounded-full bg-[#7C3AED]/10 dark:bg-[#8B5CF6]/20 text-[#7C3AED] dark:text-[#8B5CF6] flex items-center justify-center group-hover:bg-[#7C3AED] group-hover:text-white transition-all shadow-sm">
+                        <span class="material-icons-round text-[24px]">videocam</span>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-600 dark:text-gray-300">Video</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="p-6 max-w-2xl mx-auto w-full">
+            <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6">Recent Log</h3>
+            
+            <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                    <div class="mt-1">
+                        <span class="material-icons-round text-[20px] text-red-500">call_missed</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm text-[#171717] dark:text-[#F5F5F5]">Missed Video Call</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Today at 10:42 AM</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="mt-1">
+                        <span class="material-icons-round text-[20px] text-green-500">call_made</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm text-[#171717] dark:text-[#F5F5F5]">Outgoing Voice Call</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Yesterday at 3:15 PM</p>
+                        <p class="text-xs font-medium text-gray-600 dark:text-gray-300 mt-1 bg-white dark:bg-[#262626] border border-gray-100 dark:border-white/5 px-2 py-1 rounded inline-block">Duration: 12:05</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed bottom-6 right-6 flex flex-col items-end gap-4 z-50">
+            <div id="ai-popup" class="hidden w-80 bg-white dark:bg-[#262626] rounded-2xl shadow-2xl border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col transition-all duration-300">
+                <div class="bg-[#7C3AED] dark:bg-[#8B5CF6] p-4 text-white dark:text-[#F5F5F5] flex justify-between items-center transition-colors">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        <span class="font-bold text-sm">Rabta AI</span>
+                    </div>
+                    <button onclick="toggleAI()" class="hover:bg-white/20 p-1 rounded-lg transition-colors">
+                        <span class="material-icons-round text-[20px]">close</span>
+                    </button>
+                </div>
+                <div class="h-48 bg-[#FAFAFA] dark:bg-[#171717] p-4 text-sm text-gray-500 dark:text-[#F5F5F5]/50 italic overflow-y-auto">
+                    How can I help you today?
+                </div>
+                <div class="p-4 bg-white dark:bg-[#262626] border-t border-gray-100 dark:border-white/10">
+                    <input type="text" placeholder="Type a message..." class="w-full text-sm p-2.5 rounded-xl bg-gray-50 dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] border border-gray-200 dark:border-white/10 outline-none focus:border-[#7C3AED] dark:focus:border-[#8B5CF6] transition-all">
+                </div>
+            </div>
+            <button onclick="toggleAI()" class="w-12 h-12 bg-[#7C3AED] dark:bg-[#8B5CF6] rounded-full flex items-center justify-center text-white dark:text-[#F5F5F5] shadow-xl hover:scale-110 transition-transform">
+                <span class="material-icons-round text-[24px]">electric_bolt</span>
+            </button>
+        </div>
+    </main>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        function toggleAI() {
+            const popup = document.getElementById('ai-popup');
+            if(popup) popup.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

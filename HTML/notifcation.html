@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabta | Tech Community Hub</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { light: '#7C3AED', dark: '#8B5CF6' },
+                        surface: { light: '#FFFFFF', dark: '#262626' },
+                        background: { light: '#FAFAFA', dark: '#171717' },
+                        textPrimary: { light: '#171717', dark: '#F5F5F5' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #7C3AED; border-radius: 10px; }
+        .transition-theme { transition: background-color 0.2s ease, color 0.2s ease; }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden bg-background-light dark:bg-background-dark text-textPrimary-light dark:text-textPrimary-dark transition-theme">
+
+     <aside class="w-16 h-screen flex flex-col items-center py-6 bg-white dark:bg-[#171717] border-r border-gray-100 dark:border-white/5 shrink-0 transition-colors duration-300 z-20 overflow-y-auto no-scrollbar">
+    
+    <div class="mb-8">
+        <div class="w-11 h-11 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center text-purple-600 dark:text-purple-400 cursor-pointer hover:scale-105 transition-transform">
+            <span class="material-icons-round text-[26px]">hub</span>
+        </div>
+    </div>
+
+   <nav class="flex flex-col items-center gap-5 w-full">
+            <button class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-2xl transition-all" title="Chats">
+                <span class="material-icons-round text-[24px]">chat_bubble</span>
+            </button>
+            <button class="w-11 h-11 bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 rounded-2xl transition-all" title="Communities">
+                <span class="material-icons-round text-[26px]">groups</span>
+            </button>
+            <button class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-2xl transition-all" title="Saved">
+                <span class="material-icons-round text-[24px]">bookmarks</span>
+            </button>
+            <button class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-2xl transition-all" title="Jobs">
+                <span class="material-icons-round text-[24px]">work_outline</span>
+            </button>
+            <button class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-2xl transition-all" title="Calls">
+            <span class="material-icons-round text-[24px]">call</span>
+            </button>
+        </nav>
+
+    <div class="flex flex-col items-center gap-6 mt-auto pb-4">
+        
+        <button class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-2xl transition-all" title="Settings">
+            <span class="material-icons-round text-[24px]">settings</span>
+        </button>
+
+        <div class="w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center text-white text-[12px] font-bold ring-2 ring-purple-200 dark:ring-purple-900 ring-offset-2 ring-offset-white dark:ring-offset-[#171717] cursor-pointer hover:ring-purple-400 transition-all">
+            YO
+        </div>
+        
+    </div>
+</aside>
+<!-- 
+    <aside class="w-[280px] bg-white dark:bg-surface-dark border-r border-gray-100 dark:border-white/5 flex flex-col transition-theme">
+        <div class="p-4 flex items-center justify-between">
+            <h2 class="text-xl font-bold tracking-tight">Rabta</h2>
+            <button class="text-gray-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7" stroke-width="2" stroke-linecap="round"/></svg></button>
+        </div>
+        <div class="px-4 mb-4">
+            <div class="relative flex items-center bg-gray-50 dark:bg-background-dark rounded-lg px-3 border border-gray-100 dark:border-white/5 focus-within:border-brand-light transition-all">
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"/></svg>
+                <input type="text" placeholder="Search" class="bg-transparent text-sm p-2 outline-none w-full">
+            </div>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto custom-scrollbar">
+            <div class="px-4 py-3 flex items-center gap-3 bg-brand-light/5 dark:bg-brand-dark/10 border-l-4 border-brand-light cursor-pointer">
+                <img src="https://i.pravatar.cc/150?u=david" class="w-12 h-12 rounded-full border border-gray-100" />
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h4 class="font-bold text-sm truncate">David Chen</h4>
+                        <span class="text-[10px] text-brand-light font-bold uppercase">10:42 AM</span>
+                    </div>
+                    <p class="text-xs text-gray-500 truncate">The PR for the dashboard is ready...</p>
+                </div>
+            </div>
+            </div>
+    </aside> -->
+<main class="flex-1 flex flex-col relative bg-background-light dark:bg-[#171717] overflow-y-auto custom-scrollbar transition-theme">
+    <div class="max-w-2xl mx-auto w-full p-6 md:p-8">
+        
+        <div class="flex items-center gap-4 mb-8">
+            <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-white/70">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            </button>
+            <h1 class="text-2xl font-bold text-[#171717] dark:text-[#F5F5F5]">Notifications</h1>
+        </div>
+
+        <div class="bg-surface-light dark:bg-[#262626] rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden mb-6">
+            <div class="p-4 border-b border-gray-50 dark:border-white/5 opacity-60 text-xs font-bold tracking-widest uppercase text-gray-500 dark:text-white/60">Push Alerts</div>
+            
+            <div class="flex items-center justify-between p-5 border-b border-gray-50 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors">
+                <div class="flex-1 pr-4">
+                    <h4 class="text-sm font-semibold text-[#171717] dark:text-[#F5F5F5]">Chat Messages</h4>
+                    <p class="text-xs text-gray-500 dark:text-white/40 mt-1">Get notified for new personal messages.</p>
+                </div>
+                <div onclick="this.classList.toggle('bg-gray-300'); this.classList.toggle('dark:bg-gray-600'); this.classList.toggle('bg-brand-light'); this.classList.toggle('dark:bg-brand-dark'); this.firstElementChild.classList.toggle('translate-x-5');" 
+                     class="w-12 h-7 bg-brand-light dark:bg-brand-dark rounded-full relative transition-colors cursor-pointer shrink-0">
+                    <div class="absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform translate-x-5 shadow-sm"></div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between p-5 border-b border-gray-50 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors">
+                <div class="flex-1 pr-4">
+                    <h4 class="text-sm font-semibold text-[#171717] dark:text-[#F5F5F5]">Community Mentions</h4>
+                    <p class="text-xs text-gray-500 dark:text-white/40 mt-1">Notify me when someone tags me in a group.</p>
+                </div>
+                <div onclick="this.classList.toggle('bg-gray-300'); this.classList.toggle('dark:bg-gray-600'); this.classList.toggle('bg-brand-light'); this.classList.toggle('dark:bg-brand-dark'); this.firstElementChild.classList.toggle('translate-x-5');" 
+                     class="w-12 h-7 bg-brand-light dark:bg-brand-dark rounded-full relative transition-colors cursor-pointer shrink-0">
+                    <div class="absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform translate-x-5 shadow-sm"></div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between p-5 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors">
+                <div class="flex-1 pr-4">
+                    <h4 class="text-sm font-semibold text-brand-light dark:text-brand-dark flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        AI Job Matches
+                    </h4>
+                    <p class="text-xs text-gray-500 dark:text-white/40 mt-1">Let Rabta AI notify you about jobs matching your ITI track.</p>
+                </div>
+                <div onclick="this.classList.toggle('bg-gray-300'); this.classList.toggle('dark:bg-gray-600'); this.classList.toggle('bg-brand-light'); this.classList.toggle('dark:bg-brand-dark'); this.firstElementChild.classList.toggle('translate-x-5');" 
+                     class="w-12 h-7 bg-brand-light dark:bg-brand-dark rounded-full relative transition-colors cursor-pointer shrink-0">
+                    <div class="absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform translate-x-5 shadow-sm"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-surface-light dark:bg-[#262626] rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden">
+             <div class="flex items-center justify-between p-5 hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors">
+                <div class="flex-1 pr-4">
+                    <h4 class="text-sm font-semibold text-[#171717] dark:text-[#F5F5F5]">In-App Sounds</h4>
+                    <p class="text-xs text-gray-500 dark:text-white/40 mt-1">Play sounds for incoming messages.</p>
+                </div>
+                <div onclick="this.classList.toggle('bg-gray-300'); this.classList.toggle('dark:bg-gray-600'); this.classList.toggle('bg-brand-light'); this.classList.toggle('dark:bg-brand-dark'); this.firstElementChild.classList.toggle('translate-x-5');" 
+                     class="w-12 h-7 bg-gray-300 dark:bg-gray-600 rounded-full relative transition-colors cursor-pointer shrink-0">
+                    <div class="absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform shadow-sm"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+        function toggleAI() {
+            document.getElementById('ai-popup').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

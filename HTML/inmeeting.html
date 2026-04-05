@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabta | Tech Community Hub</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+        }
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { light: '#7C3AED', dark: '#8B5CF6' },
+                        surface: { light: '#FFFFFF', dark: '#262626' },
+                        background: { light: '#FAFAFA', dark: '#171717' },
+                        textPrimary: { light: '#171717', dark: '#F5F5F5' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #7C3AED; border-radius: 10px; }
+        .transition-theme { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden bg-background-light dark:bg-background-dark text-textPrimary-light dark:text-textPrimary-dark transition-theme">
+
+   <main class="flex-1 flex flex-col relative bg-[#FAFAFA] dark:bg-[#171717] transition-theme overflow-hidden">
+    
+    <header class="h-16 bg-white dark:bg-[#262626] border-b border-gray-100 dark:border-white/5 flex items-center justify-between px-6 shrink-0 z-10 transition-colors">
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-[#7C3AED]/10 dark:bg-[#8B5CF6]/20 rounded-xl flex items-center justify-center text-[#7C3AED] dark:text-[#8B5CF6]">
+                <span class="material-icons-round text-xl">video_camera_front</span>
+            </div>
+            <div>
+                <h2 class="text-[#171717] dark:text-[#F5F5F5] font-bold text-lg leading-tight">ITI Front-End Project Sync</h2>
+                <p class="text-[11px] text-gray-500 dark:text-gray-400 font-medium tracking-wide">00:45:22 • 4 Participants</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="px-3 py-1.5 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg text-xs font-bold flex items-center gap-2 border border-red-200 dark:border-red-900/50">
+                <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                REC
+            </div>
+            <button class="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-gray-50 dark:hover:bg-white/5 transition-all">
+                <span class="material-icons-round">person_add</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="flex-1 flex overflow-hidden">
+        
+        <div class="flex-1 p-4 md:p-6 overflow-y-auto custom-scrollbar flex flex-col gap-4 relative">
+            
+            <div class="w-full flex-1 min-h-[350px] bg-gray-900 rounded-3xl relative overflow-hidden shadow-sm group border border-gray-200 dark:border-white/5">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover opacity-90" alt="Active Speaker" />
+                
+                <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl flex items-center gap-3 text-white border border-white/10 shadow-lg">
+                    <span class="font-semibold text-sm">Sarah Ahmed (Tech Lead)</span>
+                    <span class="material-icons-round text-[16px] text-[#8B5CF6]">mic</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 h-48 shrink-0">
+                
+                <div class="bg-gray-900 rounded-2xl relative overflow-hidden shadow-sm border border-gray-200 dark:border-white/5">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover opacity-80" />
+                    <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg flex items-center gap-2 text-white border border-white/10">
+                        <span class="font-medium text-xs">David Chen</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 rounded-2xl relative overflow-hidden shadow-sm border border-gray-200 dark:border-white/5">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover opacity-80" />
+                    <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg flex items-center gap-2 text-white border border-white/10">
+                        <span class="font-medium text-xs">Omar K.</span>
+                        <span class="material-icons-round text-[14px] text-red-400">mic_off</span>
+                    </div>
+                </div>
+
+                <div class="bg-[#262626] dark:bg-[#1A1A1A] rounded-2xl relative flex items-center justify-center shadow-sm border border-gray-200 dark:border-white/5">
+                    <div class="w-20 h-20 rounded-full bg-[#8B5CF6] flex items-center justify-center text-white text-3xl font-bold ring-4 ring-[#8B5CF6]/20">
+                        YO
+                    </div>
+                    <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg flex items-center gap-2 text-white border border-white/10">
+                        <span class="font-medium text-xs">You</span>
+                        <span class="material-icons-round text-[14px] text-red-400">videocam_off</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 md:gap-3 bg-white/90 dark:bg-[#262626]/90 backdrop-blur-xl px-4 py-3 rounded-full shadow-2xl border border-gray-200 dark:border-white/10 transition-colors">
+                
+                <button class="w-12 h-12 rounded-full flex items-center justify-center bg-gray-100 dark:bg-[#171717] text-gray-700 dark:text-[#F5F5F5] hover:bg-gray-200 dark:hover:bg-white/10 transition-colors" title="Mute/Unmute">
+                    <span class="material-icons-round text-[22px]">mic</span>
+                </button>
+                
+                <button class="w-12 h-12 rounded-full flex items-center justify-center bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors" title="Turn on Camera">
+                    <span class="material-icons-round text-[22px]">videocam_off</span>
+                </button>
+                
+                <button class="w-12 h-12 rounded-full flex items-center justify-center bg-gray-100 dark:bg-[#171717] text-gray-700 dark:text-[#F5F5F5] hover:bg-[#7C3AED] hover:text-white dark:hover:bg-[#8B5CF6] dark:hover:text-white transition-colors" title="Share Screen">
+                    <span class="material-icons-round text-[22px]">present_to_all</span>
+                </button>
+                
+                <button class="w-12 h-12 rounded-full flex items-center justify-center bg-gray-100 dark:bg-[#171717] text-gray-700 dark:text-[#F5F5F5] hover:bg-yellow-100 hover:text-yellow-600 dark:hover:bg-yellow-900/30 dark:hover:text-yellow-400 transition-colors" title="Raise Hand">
+                    <span class="material-icons-round text-[22px]">back_hand</span>
+                </button>
+                
+                <div class="w-px h-8 bg-gray-200 dark:bg-white/10 mx-1 md:mx-2"></div>
+                
+                <button class="w-14 h-12 rounded-[20px] flex items-center justify-center bg-red-500 hover:bg-red-600 text-white shadow-lg shadow-red-500/30 transition-all hover:scale-105" title="Leave Meeting">
+                    <span class="material-icons-round text-[24px]">call_end</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="w-80 bg-white dark:bg-[#262626] border-l border-gray-100 dark:border-white/5 flex flex-col shrink-0 transition-colors">
+            
+            <div class="flex items-center px-4 pt-4 border-b border-gray-100 dark:border-white/5 gap-4">
+                <button class="flex-1 pb-3 border-b-2 border-[#7C3AED] dark:border-[#8B5CF6] text-[#7C3AED] dark:text-[#8B5CF6] font-bold text-sm transition-colors">In-call Messages</button>
+                <button class="flex-1 pb-3 border-b-2 border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 font-semibold text-sm transition-colors">People (4)</button>
+            </div>
+
+            <div class="flex-1 p-4 overflow-y-auto custom-scrollbar flex flex-col gap-5">
+                
+                <div class="flex gap-3">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" class="w-8 h-8 rounded-full border border-gray-100 dark:border-white/10 shrink-0" />
+                    <div>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="text-sm font-bold text-[#171717] dark:text-[#F5F5F5]">David Chen</span>
+                            <span class="text-[10px] text-gray-400">12:42 PM</span>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-[#171717] p-3 rounded-2xl rounded-tl-sm text-sm text-gray-700 dark:text-gray-300 border border-gray-100 dark:border-white/5 leading-relaxed shadow-sm">
+                            I'll share my screen to show the React component updates we discussed.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&auto=format&fit=crop" class="w-8 h-8 rounded-full border border-gray-100 dark:border-white/10 shrink-0" />
+                    <div>
+                        <div class="flex items-baseline gap-2 mb-1">
+                            <span class="text-sm font-bold text-[#171717] dark:text-[#F5F5F5]">Sarah Ahmed</span>
+                            <span class="text-[10px] text-gray-400">12:44 PM</span>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-[#171717] p-3 rounded-2xl rounded-tl-sm text-sm text-gray-700 dark:text-gray-300 border border-gray-100 dark:border-white/5 leading-relaxed shadow-sm">
+                            Looks great David! Can you drop the Figma link here?
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center my-2">
+                    <span class="bg-gray-100 dark:bg-white/5 px-3 py-1 rounded-full text-[10px] font-semibold text-gray-400 uppercase tracking-widest">Omar joined the call</span>
+                </div>
+
+            </div>
+
+            <div class="p-4 border-t border-gray-100 dark:border-white/5 bg-white dark:bg-[#262626]">
+                <div class="bg-gray-50 dark:bg-[#171717] border border-gray-200 dark:border-white/10 rounded-2xl flex items-center px-2 py-2 focus-within:border-[#7C3AED] dark:focus-within:border-[#8B5CF6] transition-all shadow-sm">
+                    <button class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors shrink-0">
+                        <span class="material-icons-round text-[20px]">attach_file</span>
+                    </button>
+                    <input type="text" placeholder="Send a message..." class="bg-transparent flex-1 text-sm outline-none px-2 text-[#171717] dark:text-[#F5F5F5]" />
+                    <button class="w-8 h-8 bg-[#7C3AED] dark:bg-[#8B5CF6] text-white rounded-xl flex items-center justify-center shrink-0 hover:scale-105 transition-transform shadow-md">
+                        <span class="material-icons-round text-[18px]">send</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+   </main>
+</body>
+</html>
