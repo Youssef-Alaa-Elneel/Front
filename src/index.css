@@ -1,9 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
 
 @layer base {
   body {
-    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300;
+    @apply bg-[#FAFAFA] text-[#171717] dark:bg-[#171717] dark:text-[#F5F5F5] transition-colors duration-300;
   }
 }
