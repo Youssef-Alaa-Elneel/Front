@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-// تعريف الـ Interfaces لضمان الـ Type Safety في أول أسبوع فرونت
+// تعريف الـ Interfaces لضمان الـ Type Safety
 interface NavItem {
   path: string;
   icon: string;
@@ -11,7 +11,7 @@ interface NavItem {
 const LeftSidebar: React.FC = () => {
   const location = useLocation();
 
-  // قائمة الروابط الأساسية كما ظهرت في ملفات (home.html, Group-List.html, callhistory.html)
+  // قائمة الروابط الأساسية كما ظهرت في ملفاتكم
   const navItems: NavItem[] = [
     { path: "/chats", icon: "chat_bubble", label: "Chats" },
     { path: "/groups", icon: "groups", label: "Communities" },
@@ -24,8 +24,10 @@ const LeftSidebar: React.FC = () => {
   const isActive = (path: string) => location.pathname.startsWith(path);
 
   return (
-    <aside className="w-16 h-screen flex flex-col items-center py-6 bg-white dark:bg-[#171717] border-r border-gray-100 dark:border-white/5 shrink-0 transition-colors duration-300 z-20 overflow-y-auto no-scrollbar">
-      {/* اللوجو الرئيسي (hub) كما في ملف splash.html و home.html */}
+    // 1. الكلاسات الأساسية للسايد بار بناءً على ملفات الـ HTML بتاعتكم
+    // Width ثابت (w-16)، h-screen، items-center عشان نضمن التوسيط
+    <aside className="w-16 h-screen flex flex-col items-center py-6 bg-white dark:bg-[#171717] border-r border-gray-100 dark:border-white/5 shrink-0 transition-colors duration-300 z-20 overflow-y-auto hide-scrollbar">
+      {/* 2. اللوجو الرئيسي (hub) بنفس مقاس الـ HTML */}
       <div className="mb-8">
         <Link
           to="/"
@@ -35,13 +37,15 @@ const LeftSidebar: React.FC = () => {
         </Link>
       </div>
 
-      {/* قائمة الـ Navigation الرئيسية */}
+      {/* 3. قائمة الـ Navigation الرئيسية - gap-5 و items-center */}
       <nav className="flex flex-col items-center gap-5 w-full">
         {navItems.map((item) => (
           <Link
             key={item.path}
             to={item.path}
             title={item.label}
+            // الكلاسات دي بتعمل التنسيق المظبوط للأيقونة (w-11, rounded-2xl)
+            // وبتنورها (Active) لما المسار يطابق
             className={`w-11 h-11 flex items-center justify-center rounded-2xl transition-all ${
               isActive(item.path)
                 ? "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
@@ -55,9 +59,9 @@ const LeftSidebar: React.FC = () => {
         ))}
       </nav>
 
-      {/* الجزء السفلي (الاعدادات والبروفايل) */}
+      {/* 4. الجزء السفلي (الاعدادات والبروفايل) بنفس تصميمكم */}
       <div className="flex flex-col items-center gap-6 mt-auto pb-4">
-        {/* رابط الإعدادات - زرار الـ Dark Mode هيكون جوا صفحة الـ Settings نفسها مش هنا */}
+        {/* رابط الإعدادات - زرار الـ Dark Mode هيكون جوا صفحة الـ Settings نفسها */}
         <Link
           to="/settings"
           title="Settings"
