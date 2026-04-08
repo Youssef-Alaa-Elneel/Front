@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Input } from "../components/ui/Input";
 import { useForm } from "react-hook-form";
@@ -8,21 +7,22 @@ import toast from "react-hot-toast";
 
 const signupSchema = z
   .object({
-    full_name: z.string().min(3, "الاسم يجب أن يكون 3 أحرف على الأقل"),
-    email: z
+    full_name: z.string().min(3, "Full name must be at least 3 characters"),
+    email: z.string().min(1, "Email is required").email("Invalid email format"),
+    phone: z
       .string()
-      .min(1, "البريد الإلكتروني مطلوب")
-      .email("صيغة الإيميل غير صحيحة"),
-    password: z.string().min(6, "كلمة المرور يجب أن تكون 6 أحرف على الأقل"),
-    confirmPassword: z.string().min(1, "تأكيد كلمة المرور مطلوب"),
+      .min(1, "Phone number is required")
+      .regex(/^01[0125][0-9]{8}$/, "Invalid Egyptian phone number"), // ده بيتأكد إنه رقم مصري صح
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    confirmPassword: z.string().min(1, "Please confirm your password"),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "كلمات المرور غير متطابقة",
-    path: ["confirmPassword"], // دي بتخلي الإيرور يظهر تحت حقل التأكيد
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
   });
 
 type SignupFormInputs = z.infer<typeof signupSchema>;
-
+//----------------------------------
 export const Signup = () => {
   const {
     register,
@@ -95,6 +95,8 @@ export const Signup = () => {
                 id="phone"
                 type="tel"
                 placeholder="Enter your phone number"
+                {...register("phone")}
+                error={errors.phone?.message}
               />
 
               <Input
