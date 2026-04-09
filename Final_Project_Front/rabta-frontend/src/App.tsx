@@ -1,4 +1,6 @@
 import { Routes, Route, Navigate, Link, useLocation } from "react-router-dom";
+import { ProtectedRoute } from "./components/layout/ProtectedRoute";
+import { PublicRoute } from "./components/layout/PublicRoute";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { Settings } from "./pages/Settings";
@@ -55,41 +57,46 @@ function App() {
         </nav>
 
         {/* 4. الـ Routes اللي بتعرض الصفحات */}
+        {/* 4. الـ Routes اللي بتعرض الصفحات */}
         <Routes>
-          {/* حول المستخدم تلقائياً لصفحة التشات للتجربة */}
+          {/* التوجيه الافتراضي: هيروح للتشات، لو معاه توكن هيدخل، لو معندوش الحارس هيطرده للوجين */}
           <Route path="/" element={<Navigate to="/chats" replace />} />
 
-          {/* صفحات الـ Auth */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+          {/* === الحارس الأول: الصفحات العامة (للي مش مسجل دخول) === */}
+          <Route element={<PublicRoute />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+          </Route>
 
-          {/* الصفحات الفعلية بعد التسجيل */}
-          <Route
-            path="/chats"
-            element={<PlaceholderPage title="صفحة المحادثات (Chats)" />}
-          />
-          <Route
-            path="/groups"
-            element={<PlaceholderPage title="صفحة المجتمعات (Groups)" />}
-          />
-          <Route
-            path="/bookmarks"
-            element={<PlaceholderPage title="صفحة المحفوظات (Bookmarks)" />}
-          />
-          <Route
-            path="/jobs"
-            element={<PlaceholderPage title="صفحة الوظائف (Jobs)" />}
-          />
-          <Route
-            path="/calls"
-            element={<PlaceholderPage title="صفحة المكالمات (Calls)" />}
-          />
-          <Route path="/settings" element={<Settings />} />
-          <Route
-            path="/profile"
-            element={<PlaceholderPage title="صفحة الملف الشخصي (Profile)" />}
-          />
+          {/* === الحارس التاني: الصفحات المحمية (للمسجلين دخول فقط) === */}
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/chats"
+              element={<PlaceholderPage title="Chats Page" />}
+            />
+            <Route
+              path="/groups"
+              element={<PlaceholderPage title="Communities Page" />}
+            />
+            <Route
+              path="/bookmarks"
+              element={<PlaceholderPage title="Saved Bookmarks" />}
+            />
+            <Route
+              path="/jobs"
+              element={<PlaceholderPage title="Jobs Board" />}
+            />
+            <Route
+              path="/calls"
+              element={<PlaceholderPage title="Calls History" />}
+            />
+            <Route path="/settings" element={<Settings />} />
+            <Route
+              path="/profile"
+              element={<PlaceholderPage title="User Profile" />}
+            />
+          </Route>
         </Routes>
       </main>
     </div>
