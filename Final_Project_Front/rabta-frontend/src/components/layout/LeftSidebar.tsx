@@ -30,7 +30,7 @@ const LeftSidebar: React.FC = () => {
       {/* 2. اللوجو الرئيسي (hub) بنفس مقاس الـ HTML */}
       <div className="mb-8">
         <Link
-          to="/"
+          to="/chats"
           className="w-11 h-11 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center text-purple-600 dark:text-purple-400 cursor-pointer hover:scale-105 transition-transform"
         >
           <span className="material-icons-round text-[26px]">hub</span>
