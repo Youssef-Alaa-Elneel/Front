@@ -7,6 +7,7 @@ import { Settings } from "./pages/Settings";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { MainLayout } from "./components/layout/MainLayout";
 import { HomeFeed } from "./pages/HomeFeed";
+import { GroupsFeed } from "./pages/GroupsFeed";
 
 // صفحات تجريبية علشان لما ندوس على السايد بار نلاقي حاجة (ممكن تمسحهم بعدين)
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -29,10 +30,7 @@ function App() {
         {/* التعديل هنا: غلفنا الصفحات بالـ MainLayout */}
         <Route element={<MainLayout />}>
           <Route path="/chats" element={<HomeFeed />} />
-          <Route
-            path="/groups"
-            element={<PlaceholderPage title="Communities Page" />}
-          />
+          <Route path="/groups" element={<GroupsFeed />} />
           <Route
             path="/bookmarks"
             element={<PlaceholderPage title="Saved Bookmarks" />}
