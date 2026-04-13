@@ -1,16 +1,19 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Navigate, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+// تأكدي أن المسار ../../store/store صحيح بالنسبة لمكان الفايل
+import type { RootState } from "../../store/store";
 
-// TODO: Move to Redux (Aya) - This token check will be replaced by Redux state selector
 export const ProtectedRoute = () => {
-  // بنشيك لو في توكن في المتصفح ولا لا
-  const token = localStorage.getItem("token");
+  // بنشيك على الـ token من الـ Redux state
+  // بنستخدم RootState كنوع (Type) عشان الـ TypeScript يفهم الـ state جواه إيه
+  const token = useSelector((state: RootState) => state.auth.token);
 
-  // لو مفيش توكن، اطرده على صفحة اللوجين
+  // لو مفيش توكن (المستخدم مش مسجل دخول)، بنرجعه لصفحة الـ Login
   if (!token) {
     return <Navigate to="/login" replace />;
   }
 
-  // لو في توكن، خليه يكمل ويدخل الصفحة اللي هو عايزها
+  // لو فيه توكن، بنسمح له يشوف الصفحات اللي جوه (الـ Child Routes)
   return <Outlet />;
 };

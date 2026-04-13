@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import LeftSidebar from "./LeftSidebar";
 
 // TODO (Aya): If we add a Mobile view with open/close toggle, the toggle state will be managed in Redux here
+// خطة: اعمل uiSlice فيه sidebarOpen state، واستخدمه بـ useSelector للتحكم في عرض الـ sidebar على الـ mobile
 export const MainLayout = () => {
   return (
     <div className="bg-[#FAFAFA] dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] font-display h-screen flex overflow-hidden transition-colors duration-300">

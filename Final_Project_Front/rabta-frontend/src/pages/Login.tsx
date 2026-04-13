@@ -1,11 +1,13 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { Input } from "../components/ui/Input";
 import { loginUser } from "../api/auth";
+import { setCredentials } from "../store/slices/authSlice";
 
 const loginSchema = z.object({
   email: z
@@ -21,6 +23,7 @@ type LoginFormInputs = z.infer<typeof loginSchema>;
 
 export const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -37,11 +40,9 @@ export const Login = () => {
         password: data.password,
       });
 
-      localStorage.setItem("token", responseData.token);
+      dispatch(setCredentials({ user: responseData.user, token: responseData.token }));
       toast.success("Successfully logged in!");
-      
-      // التوجيه لصفحة الـ Home بعد النجاح
-      navigate("/home");
+      navigate("/chats"); // التوجيه للصفحة اللي فيها الشات
       
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || "Login failed. Please check your credentials.";
@@ -89,12 +90,6 @@ export const Login = () => {
                 {...register("password")}
                 error={errors.password?.message}
               />
-
-              <div className="text-right">
-                <Link to="/forgot-password" hidden className="text-sm font-medium text-[#7C3AED] dark:text-[#8B5CF6] hover:underline">
-                  Forgot Password?
-                </Link>
-              </div>
 
               <button
                 type="submit"
