@@ -7,6 +7,7 @@ import { Settings } from "./pages/Settings";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { MainLayout } from "./components/layout/MainLayout";
 import { HomeFeed } from "./pages/HomeFeed";
+import { GroupsFeed } from "./pages/GroupsFeed";
 import Profile from './pages/Profile'; // تأكدي إن الملف ده موجود في src/pages/Profile.tsx
 import EditProfile from './pages/EditProfile'; // تأكدي إن الملف ده موجود في src/pages/EditProfile.tsx
 import SetupProfile from './pages/SetupProfile'; // تأكدي إن الملف ده موجود في src/pages/SetupProfile.tsx   
@@ -36,6 +37,19 @@ function App() {
         <Route element={<MainLayout />}>
           {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/chats" element={<HomeFeed />} />
+          <Route path="/groups" element={<GroupsFeed />} />
+          <Route
+            path="/bookmarks"
+            element={<PlaceholderPage title="Saved Bookmarks" />}
+          />
+          <Route
+            path="/jobs"
+            element={<PlaceholderPage title="Jobs Board" />}
+          />
+          <Route
+            path="/calls"
+            element={<PlaceholderPage title="Calls History" />}
+          />
           <Route path="/groups" element={<PlaceholderPage title="Communities" />} />
           <Route path="/bookmarks" element={<PlaceholderPage title="Saved Bookmarks" />} />
           <Route path="/jobs" element={<PlaceholderPage title="Jobs Board" />} />

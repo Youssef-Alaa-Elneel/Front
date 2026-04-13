@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+/* إخفاء السكرول بار مع الحفاظ على خاصية السحب */
+@layer utilities {
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+}
