@@ -8,6 +8,7 @@ import { ForgotPassword } from "./pages/ForgotPassword";
 import { MainLayout } from "./components/layout/MainLayout";
 import { HomeFeed } from "./pages/HomeFeed";
 import { GroupsFeed } from "./pages/GroupsFeed";
+import { Splash } from "./pages/Splash";
 
 // صفحات تجريبية علشان لما ندوس على السايد بار نلاقي حاجة (ممكن تمسحهم بعدين)
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -18,7 +19,7 @@ function App() {
   return (
     <Routes>
       {/* التوجيه الافتراضي: هيروح للتشات، لو معاه توكن هيدخل، لو معندوش الحارس هيطرده للوجين */}
-      <Route path="/" element={<Navigate to="/chats" replace />} />
+      <Route path="/" element={<Splash />} />{" "}
       {/* === الحارس الأول: الصفحات العامة (للي مش مسجل دخول) === */}
       <Route element={<PublicRoute />}>
         <Route path="/login" element={<Login />} />
