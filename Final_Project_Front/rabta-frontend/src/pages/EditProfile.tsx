@@ -97,31 +97,6 @@ const EditProfile: React.FC = () => {
 
   return (
     <div className="flex h-screen w-full bg-[#FAFAFA] dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] font-sans antialiased overflow-hidden transition-colors duration-300">
-      
-      {/* Sidebar */}
-      {/* <aside className="w-18 sm:w-20 flex flex-col items-center py-6 bg-white dark:bg-[#1E1E1E] border-r border-[#1F1F1F]/5 dark:border-[#F5F5F5]/5 shrink-0 transition-colors duration-300 z-20 h-full">
-        <div className="flex flex-col items-center gap-5 w-full">
-          <div className="mb-4">
-            <div className="w-12 h-12 bg-[#7C3AED]/10 dark:bg-[#8B5CF6]/20 rounded-2xl flex items-center justify-center text-[#7C3AED] dark:text-[#8B5CF6] shadow-sm">
-              <span className="material-icons-round text-2xl">hub</span>
-            </div>
-          </div>
-          <button className="nav-icon-btn" title="Chats"><span className="material-icons-round text-2xl">chat_bubble_outline</span></button>
-          <button className="nav-icon-btn" title="Community"><span className="material-icons-round text-2xl">groups</span></button>
-          <button className="nav-icon-btn" title="Saved"><span className="material-icons-round text-2xl">bookmark_border</span></button>
-          <button className="nav-icon-btn" title="Jobs"><span className="material-icons-round text-2xl">work_outline</span></button>
-          <button className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 rounded-2xl transition-all duration-300" title="Calls">
-            <span className="material-icons-round">call</span>
-          </button>
-        </div>
-
-        <div className="mt-auto flex flex-col items-center gap-5 w-full">
-          <button className="nav-icon-btn" title="Settings"><span className="material-icons-round text-2xl">settings</span></button>
-          <button onClick={() => navigate('/profile')} className="w-11 h-11 flex items-center justify-center bg-[#7C3AED] dark:bg-[#8B5CF6] text-white rounded-full shadow-md border-2 border-white dark:border-[#1E1E1E] transition-transform hover:scale-105" title="My Profile">
-            <span className="text-sm font-bold tracking-wider">{user?.fullName?.substring(0, 2).toUpperCase() || 'YO'}</span>
-          </button>
-        </div>
-      </aside> */}
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto relative">
