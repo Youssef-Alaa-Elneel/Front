@@ -9,10 +9,17 @@ import { MainLayout } from "./components/layout/MainLayout";
 import { HomeFeed } from "./pages/HomeFeed";
 import { GroupsFeed } from "./pages/GroupsFeed";
 import { Splash } from "./pages/Splash";
+import Profile from './pages/Profile'; // تأكدي إن الملف ده موجود في src/pages/Profile.tsx
+import EditProfile from './pages/EditProfile'; // تأكدي إن الملف ده موجود في src/pages/EditProfile.tsx
+import SetupProfile from './pages/SetupProfile'; // تأكدي إن الملف ده موجود في src/pages/SetupProfile.tsx   
+import { SavedContent } from './pages/SavedPage'; // تأكدي إن الملف ده موجود في src/pages/SavedContent.tsx
+import  Notifications from './pages/Notifications'; // تأكدي إن الملف ده موجود في src/pages/Notifications.tsx
 
-// صفحات تجريبية علشان لما ندوس على السايد بار نلاقي حاجة (ممكن تمسحهم بعدين)
+// سكشن الصفحات المؤقتة
 const PlaceholderPage = ({ title }: { title: string }) => (
-  <div className="p-10 text-3xl text-gray-800 dark:text-gray-100">{title}</div>
+  <div className="flex items-center justify-center h-full p-10 text-3xl text-gray-800 dark:text-gray-100">
+    {title} - Coming Soon
+  </div>
 );
 
 function App() {
@@ -54,5 +61,4 @@ function App() {
     </Routes>
   );
 }
-
 export default App;

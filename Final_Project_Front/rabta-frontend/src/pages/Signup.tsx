@@ -1,10 +1,13 @@
-import { Link, useNavigate } from "react-router-dom"; 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Input } from "../components/ui/Input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-import { registerUser } from "../api/auth"; 
+import { registerUser } from "../api/auth";
+import { setCredentials } from "../store/slices/authSlice"; 
 
 const signupSchema = z
   .object({
@@ -26,6 +29,7 @@ type SignupFormInputs = z.infer<typeof signupSchema>;
 
 export const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -37,7 +41,6 @@ export const Signup = () => {
 
   const onSubmit = async (data: SignupFormInputs) => {
     try {
-      // إرسال البيانات بأسماء الحقول التي يطلبها الباك-إند
       const responseData = await registerUser({
         fullName: data.fullname,
         email: data.email,
@@ -45,11 +48,9 @@ export const Signup = () => {
         password: data.password,
       });
 
-      localStorage.setItem("token", responseData.token);
+      dispatch(setCredentials({ user: responseData.user, token: responseData.token }));
       toast.success("Account created successfully!");
-      
-      // التوجيه لصفحة الـ Home بعد النجاح
-      navigate("/home"); 
+      navigate("/chats"); // التوجيه لصفحة الشات أو الهوم
 
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || "An error occurred. Please try again.";

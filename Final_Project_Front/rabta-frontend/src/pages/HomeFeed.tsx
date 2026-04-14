@@ -27,7 +27,7 @@ export const HomeFeed = () => {
 
         {/* قائمة المحادثات الفعليه */}
         <div className="flex-1 overflow-y-auto no-scrollbar">
-          {/* TODO (Aya): Map through individual chat objects from Redux */}
+          {/* TODO (Aya): Map through individual chat objects from Redux - استخدم useSelector((state: RootState) => state.chats.chats) عند إضافة chatsSlice */}
 
           {/* مثال لمحادثة نشطة (Active Chat) */}
           <div className="flex items-center gap-3 px-4 py-3 bg-white dark:bg-[#262626] border-l-4 border-[#7C3AED] dark:border-[#8B5CF6] cursor-pointer shadow-sm">

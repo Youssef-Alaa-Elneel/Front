@@ -2,7 +2,7 @@ import { Button } from "../components/ui/Button";
 
 export const Settings = () => {
   const toggleTheme = () => {
-    document.documentElement.classList.toggle("dark");
+    document.documentElement.classList.toggle('dark');
   };
 
   return (
