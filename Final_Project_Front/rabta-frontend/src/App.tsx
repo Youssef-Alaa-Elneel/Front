@@ -8,6 +8,7 @@ import { ForgotPassword } from "./pages/ForgotPassword";
 import { MainLayout } from "./components/layout/MainLayout";
 import { HomeFeed } from "./pages/HomeFeed";
 import { GroupsFeed } from "./pages/GroupsFeed";
+import { Splash } from "./pages/Splash";
 import Profile from './pages/Profile'; // تأكدي إن الملف ده موجود في src/pages/Profile.tsx
 import EditProfile from './pages/EditProfile'; // تأكدي إن الملف ده موجود في src/pages/EditProfile.tsx
 import SetupProfile from './pages/SetupProfile'; // تأكدي إن الملف ده موجود في src/pages/SetupProfile.tsx   
@@ -23,45 +24,41 @@ const PlaceholderPage = ({ title }: { title: string }) => (
 
 function App() {
   return (
-  <Routes>
-  {/* 1. التوجيه التلقائي */}
-  <Route path="/" element={<Navigate to="/login" replace />} />
-  
-  {/* 2. مسارات عامة: متاحة فقط لمن لم يسجل دخول (Login, Signup) */}
-  <Route element={<PublicRoute />}>
-    <Route path="/login" element={<Login />} />
-    <Route path="/signup" element={<Signup />} />
-    <Route path="/forgot-password" element={<ForgotPassword />} />
-
-  </Route>
-
-  {/* 3. مسارات محمية: تتطلب تسجيل دخول وتستخدم الـ MainLayout (عشان السايد بار يظهر) */}
-  <Route element={<ProtectedRoute />}>
-    <Route element={<MainLayout />}>
-      {/* الصفحات الأساسية */}
-      <Route path="/chats" element={<HomeFeed />} />
-      <Route path="/groups" element={<GroupsFeed />} />
-      
-      {/* صفحة المحفوظات - نقلناها هنا عشان السايد بار يظهر معاها */}
-      <Route path="/saved" element={<SavedContent />} />
-      <Route path="/bookmarks" element={<PlaceholderPage title="Saved Bookmarks" />} />
-
-      {/* صفحات البروفايل اللي إنتِ عملتيها */}
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/setup-profile" element={<SetupProfile />} />
-      <Route path="/edit-profile" element={<EditProfile />} />
-
-      {/* صفحات إضافية */}
-      <Route path="/jobs" element={<PlaceholderPage title="Jobs Board" />} />
-      <Route path="/calls" element={<PlaceholderPage title="Calls History" />} />
-      <Route path="/settings" element={<Settings />} />
-      <Route path="/notifications" element={<Notifications />} />
-    </Route>
-  </Route>
-
-  {/* 4. معالجة الروابط الخطأ */}
-  <Route path="*" element={<Navigate to="/" replace />} />
-</Routes>
+    <Routes>
+      {/* التوجيه الافتراضي: هيروح للتشات، لو معاه توكن هيدخل، لو معندوش الحارس هيطرده للوجين */}
+      <Route path="/" element={<Splash />} />{" "}
+      {/* === الحارس الأول: الصفحات العامة (للي مش مسجل دخول) === */}
+      <Route element={<PublicRoute />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+      </Route>
+      {/* === الحارس التاني: الصفحات المحمية (للمسجلين دخول فقط) === */}
+      <Route element={<ProtectedRoute />}>
+        {/* التعديل هنا: غلفنا الصفحات بالـ MainLayout */}
+        <Route element={<MainLayout />}>
+          <Route path="/chats" element={<HomeFeed />} />
+          <Route path="/groups" element={<GroupsFeed />} />
+          <Route
+            path="/bookmarks"
+            element={<PlaceholderPage title="Saved Bookmarks" />}
+          />
+          <Route
+            path="/jobs"
+            element={<PlaceholderPage title="Jobs Board" />}
+          />
+          <Route
+            path="/calls"
+            element={<PlaceholderPage title="Calls History" />}
+          />
+          <Route path="/settings" element={<Settings />} />
+          <Route
+            path="/profile"
+            element={<PlaceholderPage title="User Profile" />}
+          />
+        </Route>
+      </Route>
+    </Routes>
   );
 }
 export default App;
