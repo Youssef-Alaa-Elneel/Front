@@ -32,7 +32,7 @@ function App() {
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<Signup />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
-    <Route path="/notifications" element={<Notifications />} />
+
   </Route>
 
   {/* 3. مسارات محمية: تتطلب تسجيل دخول وتستخدم الـ MainLayout (عشان السايد بار يظهر) */}
@@ -55,6 +55,7 @@ function App() {
       <Route path="/jobs" element={<PlaceholderPage title="Jobs Board" />} />
       <Route path="/calls" element={<PlaceholderPage title="Calls History" />} />
       <Route path="/settings" element={<Settings />} />
+      <Route path="/notifications" element={<Notifications />} />
     </Route>
   </Route>
 

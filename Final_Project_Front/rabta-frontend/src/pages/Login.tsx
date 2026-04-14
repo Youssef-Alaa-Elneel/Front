@@ -39,7 +39,6 @@ export const Login = () => {
         email: data.email,
         password: data.password,
       });
-
       dispatch(setCredentials({ user: responseData.user, token: responseData.token }));
       toast.success("Successfully logged in!");
       navigate("/chats"); // التوجيه للصفحة اللي فيها الشات

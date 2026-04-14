@@ -99,7 +99,7 @@ const EditProfile: React.FC = () => {
     <div className="flex h-screen w-full bg-[#FAFAFA] dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] font-sans antialiased overflow-hidden transition-colors duration-300">
       
       {/* Sidebar */}
-      <aside className="w-18 sm:w-20 flex flex-col items-center py-6 bg-white dark:bg-[#1E1E1E] border-r border-[#1F1F1F]/5 dark:border-[#F5F5F5]/5 shrink-0 transition-colors duration-300 z-20 h-full">
+      {/* <aside className="w-18 sm:w-20 flex flex-col items-center py-6 bg-white dark:bg-[#1E1E1E] border-r border-[#1F1F1F]/5 dark:border-[#F5F5F5]/5 shrink-0 transition-colors duration-300 z-20 h-full">
         <div className="flex flex-col items-center gap-5 w-full">
           <div className="mb-4">
             <div className="w-12 h-12 bg-[#7C3AED]/10 dark:bg-[#8B5CF6]/20 rounded-2xl flex items-center justify-center text-[#7C3AED] dark:text-[#8B5CF6] shadow-sm">
@@ -121,7 +121,7 @@ const EditProfile: React.FC = () => {
             <span className="text-sm font-bold tracking-wider">{user?.fullName?.substring(0, 2).toUpperCase() || 'YO'}</span>
           </button>
         </div>
-      </aside>
+      </aside> */}
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto relative">
