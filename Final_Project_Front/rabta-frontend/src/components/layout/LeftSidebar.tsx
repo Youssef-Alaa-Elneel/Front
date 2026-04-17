@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useChat } from "../../context/ChatContext"; // استدعاء الـ Context
 
 // تعريف الـ Interfaces لضمان الـ Type Safety
 interface NavItem {
@@ -10,6 +11,9 @@ interface NavItem {
 
 const LeftSidebar: React.FC = () => {
   const location = useLocation();
+  
+  // 1. استدعاء حالة الاتصال بالـ Socket من الـ Context
+  const { isConnected } = useChat();
 
   // قائمة الروابط الأساسية كما ظهرت في ملفاتكم
   const navItems: NavItem[] = [
@@ -24,28 +28,34 @@ const LeftSidebar: React.FC = () => {
   const isActive = (path: string) => location.pathname.startsWith(path);
 
   return (
-    // 1. الكلاسات الأساسية للسايد بار بناءً على ملفات الـ HTML بتاعتكم
-    // Width ثابت (w-16)، h-screen، items-center عشان نضمن التوسيط
+    // 1. الكلاسات الأساسية للسايد بار
     <aside className="w-16 h-screen flex flex-col items-center py-6 bg-white dark:bg-[#171717] border-r border-gray-100 dark:border-white/5 shrink-0 transition-colors duration-300 z-20 overflow-y-auto hide-scrollbar">
-      {/* 2. اللوجو الرئيسي (hub) بنفس مقاس الـ HTML */}
-      <div className="mb-8">
+      
+      {/* 2. اللوجو الرئيسي (hub) + لمبة البيان */}
+      <div className="mb-8 relative">
         <Link
           to="/chats"
           className="w-11 h-11 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center text-purple-600 dark:text-purple-400 cursor-pointer hover:scale-105 transition-transform"
         >
           <span className="material-icons-round text-[26px]">hub</span>
         </Link>
+        
+        {/* لمبة بيان حالة الـ Socket (نقطة أعلى يمين اللوجو) */}
+        <span
+          className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-white dark:border-[#171717] transition-colors duration-300 ${
+            isConnected ? "bg-green-500 shadow-[0_0_8px_#22c55e]" : "bg-red-500"
+          }`}
+          title={isConnected ? "Connected to Server" : "Disconnected"}
+        ></span>
       </div>
 
-      {/* 3. قائمة الـ Navigation الرئيسية - gap-5 و items-center */}
+      {/* 3. قائمة الـ Navigation الرئيسية */}
       <nav className="flex flex-col items-center gap-5 w-full">
         {navItems.map((item) => (
           <Link
             key={item.path}
             to={item.path}
             title={item.label}
-            // الكلاسات دي بتعمل التنسيق المظبوط للأيقونة (w-11, rounded-2xl)
-            // وبتنورها (Active) لما المسار يطابق
             className={`w-11 h-11 flex items-center justify-center rounded-2xl transition-all ${
               isActive(item.path)
                 ? "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
@@ -59,7 +69,7 @@ const LeftSidebar: React.FC = () => {
         ))}
       </nav>
 
-      {/* 4. الجزء السفلي (الاعدادات والبروفايل) بنفس تصميمكم */}
+      {/* 4. الجزء السفلي (الاعدادات والبروفايل) */}
       <div className="flex flex-col items-center gap-6 mt-auto pb-4">
         {/* رابط الإعدادات - زرار الـ Dark Mode هيكون جوا صفحة الـ Settings نفسها */}
         <Link
@@ -74,7 +84,7 @@ const LeftSidebar: React.FC = () => {
           <span className="material-icons-round text-[24px]">settings</span>
         </Link>
 
-        {/* البروفايل الشخصي - "YO" كما في تصميمك */}
+        {/* البروفايل الشخصي */}
         <Link to="/profile">
           <div className="w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center text-white text-[12px] font-bold ring-2 ring-purple-200 dark:ring-purple-900 ring-offset-2 ring-offset-white dark:ring-offset-[#171717] cursor-pointer hover:ring-purple-400 transition-all">
             YO
