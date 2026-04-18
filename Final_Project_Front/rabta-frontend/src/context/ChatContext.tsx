@@ -1,5 +1,4 @@
-// src/context/ChatContext.tsx
-import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { io, Socket } from "socket.io-client";
 
 // 1. تعريف نوع البيانات اللي الـ Context هيشيلها
@@ -15,6 +14,7 @@ const ChatContext = createContext<ChatContextType>({
 });
 
 // 3. Custom Hook عشان نستخدم الـ Socket بسهولة في أي صفحة
+// eslint-disable-next-line react-refresh/only-export-components
 export const useChat = () => {
   return useContext(ChatContext);
 };
@@ -25,18 +25,15 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    // TODO (Backend Team): تغيير اللينك ده للينك سيرفر الباك-إند الحقيقي لما يجهز
+    // إنشاء الاتصال
     const socketInstance = io("http://localhost:5000", {
-      autoConnect: true, // يتصل أوتوماتيك
-      // ممكن نضيف هنا التوكن بعدين لما نربط الـ Auth
-      // auth: { token: "user_token_here" } 
+      autoConnect: true,
     });
 
-    setSocket(socketInstance);
-
-    // مراقبة حالة الاتصال
+    // 💡 الحل هنا: نقلنا التخزين جوه الـ Callback عشان نمنع الـ Cascading Renders
     socketInstance.on("connect", () => {
       console.log("🟢 Socket Connected:", socketInstance.id);
+      setSocket(socketInstance); // خزننا الـ Socket هنا بعد ما الاتصال تم بنجاح
       setIsConnected(true);
     });
 
