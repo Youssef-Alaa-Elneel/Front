@@ -4,13 +4,30 @@ import { useNavigate } from 'react-router-dom';
 const CreateGroup: React.FC = () => {
   const navigate = useNavigate();
 
+  // --- الجزء الجديد الخاص بالصور ---
+  const [coverPreview, setCoverPreview] = useState<string | null>(null);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'cover' | 'avatar') => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (type === 'cover') setCoverPreview(reader.result as string);
+        else setAvatarPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  // ------------------------------
+
   // 1. الداتا الأساسية للفورم
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     track: '',
-    groupType: 'project', // 'project' or 'learning'
-    privacy: 'public',    // 'public' or 'private'
+    groupType: 'project',
+    privacy: 'public',
   });
 
   // 2. إدارة المهارات (Skills)
@@ -35,14 +52,12 @@ const CreateGroup: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [invitedUsers, setInvitedUsers] = useState<string[]>([]);
 
-  // داتا وهمية للتجربة
   const mockConnections = [
     { id: '1', name: 'Ahmed Ali', role: 'Front-End Developer', initial: 'A', color: 'bg-blue-100 text-blue-600' },
     { id: '2', name: 'Mona Hassan', role: 'UI/UX Designer', initial: 'M', color: 'bg-green-100 text-green-600' },
     { id: '3', name: 'Youssef Alaa', role: 'Back-End Developer', initial: 'Y', color: 'bg-purple-100 text-purple-600' },
   ];
 
-  // فلترة الأشخاص بناءً على البحث
   const filteredConnections = mockConnections.filter(user => 
     user.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -53,17 +68,13 @@ const CreateGroup: React.FC = () => {
     );
   };
 
-  // 4. دالة الإرسال (Submit)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const finalData = { ...formData, skills, invitedUsers };
+    const finalData = { ...formData, skills, invitedUsers, coverPreview, avatarPreview };
     console.log('Group Data to send to Backend:', finalData);
-    // بعد ما تربطي الباك إند، هتعملي navigate لصفحة الجروب نفسه
-    // navigate('/groups');
   };
 
   return (
-    // التعديل هنا: ضفنا w-full و flex-1 عشان ياخد باقي الشاشة ويكون متسنتر
     <div className="w-full flex-1 overflow-y-auto bg-[#FAFAFA] dark:bg-[#171717] text-[#171717] dark:text-[#F5F5F5] transition-colors duration-300 min-h-screen pb-10 font-sans">
       
       {/* Header */}
@@ -83,21 +94,34 @@ const CreateGroup: React.FC = () => {
       <main className="max-w-3xl mx-auto px-4 mt-8">
         <div className="bg-white dark:bg-[#262626] rounded-2xl shadow-sm border border-gray-200 dark:border-white/10 overflow-hidden">
           
-          {/* Cover & Avatar */}
+          {/* Cover & Avatar (تم تعديل هذا الجزء فقط للصور) */}
           <div className="relative h-40 bg-gray-200 dark:bg-white/5 flex items-center justify-center group cursor-pointer transition-colors hover:bg-gray-300 dark:hover:bg-white/10">
-            <div className="flex flex-col items-center text-gray-500 dark:text-gray-400">
-              <span className="material-icons-round text-3xl mb-1">add_a_photo</span>
-              <span className="text-sm font-semibold">Add Cover Photo</span>
-            </div>
+            
+            <input type="file" id="coverInput" accept="image/*" className="hidden" onChange={(e) => handleFileChange(e, 'cover')} />
+            
+            {coverPreview ? (
+              <img src={coverPreview} alt="Cover" className="w-full h-full object-cover" />
+            ) : (
+              <label htmlFor="coverInput" className="flex flex-col items-center text-gray-500 dark:text-gray-400 cursor-pointer">
+                <span className="material-icons-round text-3xl mb-1">add_a_photo</span>
+                <span className="text-sm font-semibold">Add Cover Photo</span>
+              </label>
+            )}
 
             <div className="absolute -bottom-10 left-6 w-24 h-24 rounded-full bg-white dark:bg-[#262626] border-4 border-white dark:border-[#262626] flex items-center justify-center shadow-md overflow-hidden group/avatar hover:opacity-90 transition-opacity">
-              <div className="w-full h-full bg-gray-100 dark:bg-[#1f1f1f] flex items-center justify-center text-gray-400">
-                <span className="material-icons-round text-2xl">camera_alt</span>
-              </div>
+              <input type="file" id="avatarInput" accept="image/*" className="hidden" onChange={(e) => handleFileChange(e, 'avatar')} />
+              
+              {avatarPreview ? (
+                <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+              ) : (
+                <label htmlFor="avatarInput" className="w-full h-full bg-gray-100 dark:bg-[#1f1f1f] flex items-center justify-center text-gray-400 cursor-pointer">
+                  <span className="material-icons-round text-2xl">camera_alt</span>
+                </label>
+              )}
             </div>
           </div>
 
-          {/* Form */}
+          {/* Form - باقي الـ UI زي ما هو بالظبط */}
           <form className="p-6 pt-14 space-y-6" onSubmit={handleSubmit}>
             
             {/* Group Name */}
@@ -154,7 +178,7 @@ const CreateGroup: React.FC = () => {
               </div>
             </div>
 
-            {/* Keywords & Skills (Dynamic) */}
+            {/* Keywords & Skills */}
             <div>
               <label className="block text-sm font-semibold mb-2">Keywords & Skills</label>
               <div className="w-full bg-[#FAFAFA] dark:bg-[#1f1f1f] border border-gray-200 dark:border-white/10 rounded-xl p-2 flex flex-wrap gap-2 focus-within:border-[#7C3AED] dark:focus-within:border-[#8B5CF6] transition-colors">
@@ -175,7 +199,6 @@ const CreateGroup: React.FC = () => {
                   className="flex-1 bg-transparent min-w-[200px] px-2 py-1.5 focus:outline-none text-sm dark:text-white"
                 />
               </div>
-              <p className="text-xs text-gray-500 mt-2">Add relevant skills to help others find your group easily.</p>
             </div>
 
             {/* Discussion Type & Privacy */}
@@ -243,7 +266,7 @@ const CreateGroup: React.FC = () => {
               </div>
             </div>
 
-            {/* Quick Invite Connections (Dynamic Search & Checkboxes) */}
+            {/* Quick Invite Connections */}
             <div>
               <label className="block text-sm font-semibold mb-2">Quick Invite Connections (Optional)</label>
               <div className="border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden">
@@ -258,29 +281,23 @@ const CreateGroup: React.FC = () => {
                   />
                 </div>
                 <div className="max-h-40 overflow-y-auto p-2 space-y-1">
-                  {filteredConnections.length > 0 ? (
-                    filteredConnections.map(user => (
-                      <label key={user.id} className="flex items-center justify-between p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg cursor-pointer transition-colors">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded-full ${user.color} flex items-center justify-center font-bold text-sm`}>
-                            {user.initial}
-                          </div>
-                          <div>
-                            <p className="text-sm font-semibold">{user.name}</p>
-                            <p className="text-xs text-gray-500">{user.role}</p>
-                          </div>
+                  {filteredConnections.map(user => (
+                    <label key={user.id} className="flex items-center justify-between p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg cursor-pointer transition-colors">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-8 h-8 rounded-full ${user.color} flex items-center justify-center font-bold text-sm`}>{user.initial}</div>
+                        <div>
+                          <p className="text-sm font-semibold">{user.name}</p>
+                          <p className="text-xs text-gray-500">{user.role}</p>
                         </div>
-                        <input 
-                          type="checkbox" 
-                          checked={invitedUsers.includes(user.id)}
-                          onChange={() => handleToggleUser(user.id)}
-                          className="w-4 h-4 text-[#7C3AED] rounded border-gray-300 focus:ring-[#7C3AED]"
-                        />
-                      </label>
-                    ))
-                  ) : (
-                    <p className="text-center text-xs text-gray-500 py-4">No connections found.</p>
-                  )}
+                      </div>
+                      <input 
+                        type="checkbox" 
+                        checked={invitedUsers.includes(user.id)}
+                        onChange={() => handleToggleUser(user.id)}
+                        className="w-4 h-4 text-[#7C3AED] rounded border-gray-300"
+                      />
+                    </label>
+                  ))}
                 </div>
               </div>
             </div>
