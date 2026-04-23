@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { ProtectedRoute } from "./components/layout/ProtectedRoute";
 import { PublicRoute } from "./components/layout/PublicRoute";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
@@ -10,16 +9,21 @@ import { HomeFeed } from "./pages/HomeFeed";
 import { GroupsFeed } from "./pages/GroupsFeed";
 import { Splash } from "./pages/Splash";
 
-// استدعاء الصفحات اللي ESLint بيطلع فيها Error
-import Profile from './pages/Profile'; 
+// استدعاء صفحات البروفايل
+import Profile from "./pages/Profile";
 import EditProfile from './pages/EditProfile';
 import SetupProfile from './pages/SetupProfile';   
 import { SavedContent } from './pages/SavedPage'; 
 import Notifications from './pages/Notifications';
-
-// 👇 ضفنا هنا استدعاء صفحات الكريت والجوين
+import { CallsPage } from "./pages/CallsPage";
+// استدعاء صفحات الجروبات
 import CreateGroup from './components/Groups/CreateGroup'; 
 import JoinGroup from './components/Groups/JoinGroup';
+import { ViewContact } from './pages/ViewContact';
+import { SharedContent } from './pages/SharedContent';
+// 💡 استدعاء صفحات الوظائف (اللي كانت ناقصة)
+import { JobsBoard } from "./pages/JobsBoard";
+import { JobDetails } from "./pages/JobDetails";
 
 function App() {
   return (
@@ -33,25 +37,28 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
       </Route>
 
-      {/* الصفحات المحمية */}
-      <Route element={<ProtectedRoute />}>
-        <Route element={<MainLayout />}>
-          <Route path="/chats" element={<HomeFeed />} />
-          <Route path="/groups" element={<GroupsFeed />} />
-          
-          {/* 👇 المسارات الجديدة للجروبات عشان الزرار يشتغل وميرجعكيش للرئيسية */}
-          <Route path="/create-group" element={<CreateGroup />} />
-          <Route path="/join-group" element={<JoinGroup />} />
-          
-          {/* هنا بنستخدم الصفحات عشان الـ Error يختفي */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/edit-profile" element={<EditProfile />} />
-          <Route path="/setup-profile" element={<SetupProfile />} />
-          <Route path="/bookmarks" element={<SavedContent />} />
-          <Route path="/notifications" element={<Notifications />} />
-          
-          <Route path="/settings" element={<Settings />} />
-        </Route>
+      {/* الصفحات المفتوحة (بدون حماية مؤقتاً للاختبار) */}
+      <Route element={<MainLayout />}>
+        <Route path="/chats" element={<HomeFeed />} />
+        
+        {/* مسارات الجروبات */}
+        <Route path="/groups" element={<GroupsFeed />} />
+        <Route path="/create-group" element={<CreateGroup />} />
+        <Route path="/join-group" element={<JoinGroup />} />
+        
+        {/* 💡 مسارات الوظائف */}
+        <Route path="/jobs" element={<JobsBoard />} />
+        <Route path="/jobs/:jobId" element={<JobDetails />} />
+        <Route path="/calls" element={<CallsPage />} />
+        <Route path="/contact" element={<ViewContact />} />
+<Route path="/shared-content" element={<SharedContent />} />
+        {/* مسارات البروفايل */}
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/setup-profile" element={<SetupProfile />} />
+        <Route path="/bookmarks" element={<SavedContent />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/settings" element={<Settings />} />
       </Route>
 
       {/* استخدام Navigate هنا عشان أي لينك غلط يرجع للسبلاش */}
