@@ -9,56 +9,55 @@ import { MainLayout } from "./components/layout/MainLayout";
 import { HomeFeed } from "./pages/HomeFeed";
 import { GroupsFeed } from "./pages/GroupsFeed";
 import { Splash } from "./pages/Splash";
-import Profile from './pages/Profile'; // تأكدي إن الملف ده موجود في src/pages/Profile.tsx
-import EditProfile from './pages/EditProfile'; // تأكدي إن الملف ده موجود في src/pages/EditProfile.tsx
-import SetupProfile from './pages/SetupProfile'; // تأكدي إن الملف ده موجود في src/pages/SetupProfile.tsx   
-import { SavedContent } from './pages/SavedPage'; // تأكدي إن الملف ده موجود في src/pages/SavedContent.tsx
-import  Notifications from './pages/Notifications'; // تأكدي إن الملف ده موجود في src/pages/Notifications.tsx
 
-// سكشن الصفحات المؤقتة
-const PlaceholderPage = ({ title }: { title: string }) => (
-  <div className="flex items-center justify-center h-full p-10 text-3xl text-gray-800 dark:text-gray-100">
-    {title} - Coming Soon
-  </div>
-);
+// استدعاء الصفحات اللي ESLint بيطلع فيها Error
+import Profile from './pages/Profile'; 
+import EditProfile from './pages/EditProfile';
+import SetupProfile from './pages/SetupProfile';   
+import { SavedContent } from './pages/SavedPage'; 
+import Notifications from './pages/Notifications';
+
+// 👇 ضفنا هنا استدعاء صفحات الكريت والجوين
+import CreateGroup from './components/Groups/CreateGroup'; 
+import JoinGroup from './components/Groups/JoinGroup';
 
 function App() {
   return (
     <Routes>
-      {/* التوجيه الافتراضي: هيروح للتشات، لو معاه توكن هيدخل، لو معندوش الحارس هيطرده للوجين */}
-      <Route path="/" element={<Splash />} />{" "}
-      {/* === الحارس الأول: الصفحات العامة (للي مش مسجل دخول) === */}
+      <Route path="/" element={<Splash />} />
+
+      {/* صفحة الـ Login والـ Signup */}
       <Route element={<PublicRoute />}>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
       </Route>
-      {/* === الحارس التاني: الصفحات المحمية (للمسجلين دخول فقط) === */}
+
+      {/* الصفحات المحمية */}
       <Route element={<ProtectedRoute />}>
-        {/* التعديل هنا: غلفنا الصفحات بالـ MainLayout */}
         <Route element={<MainLayout />}>
           <Route path="/chats" element={<HomeFeed />} />
           <Route path="/groups" element={<GroupsFeed />} />
-          <Route
-            path="/bookmarks"
-            element={<PlaceholderPage title="Saved Bookmarks" />}
-          />
-          <Route
-            path="/jobs"
-            element={<PlaceholderPage title="Jobs Board" />}
-          />
-          <Route
-            path="/calls"
-            element={<PlaceholderPage title="Calls History" />}
-          />
+          
+          {/* 👇 المسارات الجديدة للجروبات عشان الزرار يشتغل وميرجعكيش للرئيسية */}
+          <Route path="/create-group" element={<CreateGroup />} />
+          <Route path="/join-group" element={<JoinGroup />} />
+          
+          {/* هنا بنستخدم الصفحات عشان الـ Error يختفي */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/setup-profile" element={<SetupProfile />} />
+          <Route path="/bookmarks" element={<SavedContent />} />
+          <Route path="/notifications" element={<Notifications />} />
+          
           <Route path="/settings" element={<Settings />} />
-          <Route
-            path="/profile"
-            element={<PlaceholderPage title="User Profile" />}
-          />
         </Route>
       </Route>
+
+      {/* استخدام Navigate هنا عشان أي لينك غلط يرجع للسبلاش */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
+
 export default App;

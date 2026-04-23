@@ -1,21 +1,30 @@
 // src/pages/GroupsFeed.tsx
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export const GroupsFeed = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const filters = ["All", "Programming", "UI/UX", "Back-End", "Mobile"];
-
+  const navigate = useNavigate();
+  
   return (
     <div className="flex w-full h-full bg-[#FAFAFA] dark:bg-[#171717]">
       {/* عمود المجتمعات (Communities List) */}
       <aside className="w-[320px] bg-[#FAFAFA] dark:bg-[#171717] flex flex-col h-full border-r border-gray-200 dark:border-gray-800 transition-colors duration-300 z-40 relative min-h-0 shrink-0">
         <div className="p-4 flex flex-col gap-4 shrink-0">
+          
+          {/* تم تعديل هذا الجزء لضبط حجم الزرار */}
           <div className="flex items-center justify-between text-[#171717] dark:text-[#F5F5F5]">
             <span className="text-xl font-bold tracking-tight">
               Communities
             </span>
-            <button className="p-1 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-colors text-gray-400 hover:text-[#7C3AED]">
-              <span className="material-icons-round">add_circle_outline</span>
+            <button 
+              onClick={() => navigate('/create-group')}
+              className="flex items-center justify-center gap-1 bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-3 py-1.5 rounded-lg text-sm font-bold shadow-sm transition-all active:scale-95"
+              title="Create New Group"
+            >
+              <span className="material-icons-round text-sm">add</span>
+              Create
             </button>
           </div>
 
@@ -30,7 +39,7 @@ export const GroupsFeed = () => {
             />
           </div>
 
-          {/* الفلاتر - تم تعديل الكلاس إلى hide-scrollbar */}
+          {/* الفلاتر */}
           <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1">
             {filters.map((filter) => (
               <button
@@ -48,7 +57,7 @@ export const GroupsFeed = () => {
           </div>
         </div>
 
-        {/* قائمة الجروبات - تم تعديل الكلاس إلى hide-scrollbar */}
+        {/* قائمة الجروبات */}
         <div className="flex-1 overflow-y-auto hide-scrollbar">
           <div className="flex items-center gap-3 px-4 py-3 bg-white dark:bg-[#262626] border-l-4 border-[#7C3AED] cursor-pointer shadow-sm">
             <div className="w-12 h-12 rounded-2xl bg-[#7C3AED]/10 flex items-center justify-center text-[#7C3AED] shrink-0">
