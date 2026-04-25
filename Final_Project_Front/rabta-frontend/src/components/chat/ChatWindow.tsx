@@ -20,13 +20,21 @@ interface ChatWindowProps {
   isOnline: boolean;
   messages: MessageType[];
   isGroupChat?: boolean;
+  onSendMessage?: (content: string) => void;
 }
 
 // ==========================================
 // 2. Component
 // ==========================================
-export const ChatWindow: React.FC<ChatWindowProps> = ({ chatName, isOnline, messages, isGroupChat = false }) => {
+export const ChatWindow: React.FC<ChatWindowProps> = ({ chatName, isOnline, messages, isGroupChat = false, onSendMessage }) => {
   const navigate = useNavigate();
+
+  const handleSend = () => {
+    if (newMessage.trim() && onSendMessage) {
+      onSendMessage(newMessage.trim());
+      setNewMessage('');
+    }
+  };
 
   // --- Header States ---
   const [showUserDetails, setShowUserDetails] = useState(false);
@@ -229,6 +237,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ chatName, isOnline, mess
                 <>
                   <textarea 
                     value={newMessage} onChange={(e) => setNewMessage(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
                     className="w-full bg-transparent border-none focus:ring-0 text-sm py-2 resize-none text-[#171717] dark:text-[#F5F5F5] placeholder-gray-400 outline-none hide-scrollbar" 
                     placeholder="Write a message..." rows={1}
                   />
@@ -252,7 +261,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ chatName, isOnline, mess
               )}
             </div>
             
-            <button className="bg-[#7C3AED] text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-[#6D28D9] shadow-md shrink-0 mb-0.5 transition-colors">
+            <button onClick={handleSend} className="bg-[#7C3AED] text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-[#6D28D9] shadow-md shrink-0 mb-0.5 transition-colors">
               <span className="material-icons-round text-xl">send</span>
             </button>
           </div>
@@ -280,7 +289,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ chatName, isOnline, mess
           onClose={() => setIsPostModalOpen(false)}
           groupId="group-id" 
           groupName={chatName}
-          onPostSuccess={() => { console.log("Post Created!"); }}
+          onPostSuccess={() => { }}
         />
       )}
     </div>

@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Tailwind CSS v4: تفعيل الدارك مود عن طريق الكلاس */
+@custom-variant dark (&:is(.dark *));
+
+/* Inter font — used in HTML reference */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
 /* إخفاء السكرول بار مع الحفاظ على خاصية السحب */
 @layer utilities {
     .hide-scrollbar::-webkit-scrollbar {
@@ -11,6 +19,29 @@
         /* IE and Edge */
         scrollbar-width: none;
         /* Firefox */
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Custom thin purple scrollbar (used in main content areas) */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #7C3AED;
+        border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
     }
 }
 

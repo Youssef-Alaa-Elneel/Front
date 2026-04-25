@@ -41,7 +41,16 @@ export const ChatsList: React.FC<ChatsListProps> = ({ chats, activeChatId, onSel
       
       {/* رندر المحادثات من الـ Array */}
       <div className="flex-1 overflow-y-auto hide-scrollbar">
-        {chats.map((chat) => (
+        {chats.length === 0 ? (
+          <div className="flex flex-col items-center justify-center p-8 text-center h-full">
+            <div className="w-16 h-16 bg-gray-100 dark:bg-[#262626] rounded-full flex items-center justify-center mb-4">
+              <span className="material-icons-round text-3xl text-gray-300 dark:text-gray-600">chat_bubble_outline</span>
+            </div>
+            <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">No messages yet</p>
+            <p className="text-xs text-gray-400 dark:text-gray-500">Start a new conversation to get connected.</p>
+          </div>
+        ) : (
+        chats.map((chat) => (
           <div
             key={chat.id}
             onClick={() => onSelectChat(chat.id)}
@@ -75,7 +84,8 @@ export const ChatsList: React.FC<ChatsListProps> = ({ chats, activeChatId, onSel
               <p className="text-gray-500 dark:text-gray-400 text-xs truncate">{chat.lastMessage}</p>
             </div>
           </div>
-        ))}
+        ))
+        )}
       </div>
     </aside>
   );

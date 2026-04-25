@@ -22,7 +22,6 @@ export const ForgotPassword = () => {
   });
 
   const onSubmit = (data: ForgotFormInputs) => {
-    console.log("Reset email sent to:", data.email);
     toast.success("Reset link sent successfully!");
   };
 

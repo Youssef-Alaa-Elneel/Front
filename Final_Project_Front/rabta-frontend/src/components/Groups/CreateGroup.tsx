@@ -52,13 +52,11 @@ const CreateGroup: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [invitedUsers, setInvitedUsers] = useState<string[]>([]);
 
-  const mockConnections = [
-    { id: '1', name: 'Ahmed Ali', role: 'Front-End Developer', initial: 'A', color: 'bg-blue-100 text-blue-600' },
-    { id: '2', name: 'Mona Hassan', role: 'UI/UX Designer', initial: 'M', color: 'bg-green-100 text-green-600' },
-    { id: '3', name: 'Youssef Alaa', role: 'Back-End Developer', initial: 'Y', color: 'bg-purple-100 text-purple-600' },
-  ];
+  // TODO (Backend): استبدل هذا بجلب الاتصالات من الباك-إند
+  // مثال: useEffect(() => { axios.get('/api/connections').then(res => setConnections(res.data)) }, []);
+  const [connections] = useState<{ id: string; name: string; role: string; initial: string; color: string }[]>([]);
 
-  const filteredConnections = mockConnections.filter(user => 
+  const filteredConnections = connections.filter(user => 
     user.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -71,7 +69,6 @@ const CreateGroup: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const finalData = { ...formData, skills, invitedUsers, coverPreview, avatarPreview };
-    console.log('Group Data to send to Backend:', finalData);
   };
 
   return (

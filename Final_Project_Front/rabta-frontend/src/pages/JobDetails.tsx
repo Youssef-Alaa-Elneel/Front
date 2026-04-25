@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios, { type AxiosResponse } from 'axios';
+import { type AxiosResponse, isAxiosError } from 'axios';
+import axiosInstance from '../api/axiosInstance';
 
 // ==========================================
 // 1. Interfaces
@@ -52,17 +53,13 @@ export const JobDetails: React.FC = () => {
       try {
         setIsLoading(true);
         setError(null);
-        const token = localStorage.getItem('test_token') || "";
-
-        // ⚠️ Endpoint افتراضي، يجب تغييره لمسار الباك-إند الفعلي
-        const response: AxiosResponse<JobDetailApiResponse> = await axios.get(
-          `http://localhost:5000/api/v1/jobs/${jobId}`,
-          { headers: { Authorization: `Bearer ${token}` } }
+        const response: AxiosResponse<JobDetailApiResponse> = await axiosInstance.get(
+          `/v1/jobs/${jobId}`
         );
 
         setJob(response.data.data.job);
       } catch (err: unknown) {
-        if (axios.isAxiosError(err)) {
+        if (isAxiosError(err)) {
           const errorMessage = err.response?.data?.message || "Failed to load job details.";
           setError(errorMessage);
         } else {
@@ -93,19 +90,15 @@ export const JobDetails: React.FC = () => {
 
     try {
       setIsSending(true);
-      const token = localStorage.getItem('test_token') || "";
-      
-      // ⚠️ Endpoint لتقديم الطلب
-      await axios.post(
-        `http://localhost:5000/api/v1/jobs/${jobId}/apply`,
-        { skills: selectedSkills, note: applicationNote },
-        { headers: { Authorization: `Bearer ${token}` } }
+      await axiosInstance.post(
+        `/v1/jobs/${jobId}/apply`,
+        { skills: selectedSkills, note: applicationNote }
       );
 
       alert("Application sent successfully!");
       // Optionally navigate back or reset form
     } catch (err) {
-       console.error("Application failed", err);
+
        alert("Failed to send application. Please try again.");
     } finally {
       setIsSending(false);
@@ -273,7 +266,10 @@ export const JobDetails: React.FC = () => {
             <p className="text-xs text-gray-500 dark:text-white/40 mb-4 leading-relaxed">
               {job.companyDescription}
             </p>
-            <button className="w-full py-2 border border-[#7C3AED] dark:border-[#8B5CF6] text-[#7C3AED] dark:text-[#8B5CF6] text-xs font-bold rounded-full hover:bg-[#7C3AED] hover:text-white dark:hover:bg-[#8B5CF6] transition-all">
+            <button
+              onClick={() => navigate(`/employer/${encodeURIComponent(job.companyName)}`)}
+              className="w-full py-2 border border-[#7C3AED] dark:border-[#8B5CF6] text-[#7C3AED] dark:text-[#8B5CF6] text-xs font-bold rounded-full hover:bg-[#7C3AED] hover:text-white dark:hover:bg-[#8B5CF6] transition-all"
+            >
               View Company Profile
             </button>
           </div>

@@ -32,13 +32,13 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
 
     // 💡 الحل هنا: نقلنا التخزين جوه الـ Callback عشان نمنع الـ Cascading Renders
     socketInstance.on("connect", () => {
-      console.log("🟢 Socket Connected:", socketInstance.id);
+
       setSocket(socketInstance); // خزننا الـ Socket هنا بعد ما الاتصال تم بنجاح
       setIsConnected(true);
     });
 
     socketInstance.on("disconnect", () => {
-      console.log("🔴 Socket Disconnected");
+
       setIsConnected(false);
     });
 

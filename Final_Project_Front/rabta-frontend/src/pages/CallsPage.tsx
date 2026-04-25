@@ -66,9 +66,9 @@ export const CallsPage: React.FC = () => {
         }
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
-          console.error("Fetch Error:", err.response?.data?.message || err.message);
+
         } else {
-          console.error("Unexpected Error:", err);
+
         }
       } finally {
         setIsLoading(false);
@@ -101,9 +101,14 @@ export const CallsPage: React.FC = () => {
       <aside className="w-[300px] bg-white dark:bg-[#262626] border-r border-gray-100 dark:border-gray-800 flex flex-col shrink-0">
         <div className="p-4 flex items-center justify-between">
           <h2 className="text-xl font-bold text-[#171717] dark:text-[#F5F5F5]">Calls</h2>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:text-[#7C3AED] hover:bg-gray-50 dark:hover:bg-white/5">
-            <span className="material-icons-round text-[20px]">add_call</span>
-          </button>
+          <div className="flex items-center gap-1">
+            <button className="w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 transition-all duration-200" title="New Call">
+              <span className="material-icons-round text-[20px]">add</span>
+            </button>
+            <button className="w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-[#7C3AED]/10 dark:hover:bg-[#8B5CF6]/10 transition-all duration-200" title="Quick Dial">
+              <span className="material-icons-round text-[20px]">call</span>
+            </button>
+          </div>
         </div>
 
         <div className="px-4 mb-3">
@@ -136,6 +141,14 @@ export const CallsPage: React.FC = () => {
         <div className="flex-1 overflow-y-auto custom-scrollbar">
           {isLoading ? (
             <div className="p-10 text-center text-gray-400 animate-pulse">Fetching records...</div>
+          ) : filteredCalls.length === 0 ? (
+            <div className="flex flex-col items-center justify-center p-8 text-center h-full">
+              <div className="w-16 h-16 bg-gray-100 dark:bg-[#171717] rounded-full flex items-center justify-center mb-4">
+                <span className="material-icons-round text-3xl text-gray-300 dark:text-gray-600">call</span>
+              </div>
+              <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">No call history</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500">Your recent calls will appear here.</p>
+            </div>
           ) : filteredCalls.map((call) => {
             const other = getOtherUser(call);
             const direction = getCallDirection(call);
@@ -171,29 +184,29 @@ export const CallsPage: React.FC = () => {
           <div className="animate-in fade-in duration-500">
             <header className="p-4 md:p-6 bg-white dark:bg-[#262626] border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
               <h2 className="text-lg font-bold">Call Info</h2>
-              <div className="flex gap-2 text-gray-400">
-                <button className="w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 transition-all"><span className="material-icons-round">chat</span></button>
-                <button className="w-10 h-10 rounded-full hover:bg-red-50 hover:text-red-500 transition-all"><span className="material-icons-round">delete_outline</span></button>
+              <div className="flex gap-2">
+                <button className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-[#7C3AED] dark:hover:text-[#8B5CF6] hover:bg-gray-50 dark:hover:bg-white/5 transition-all"><span className="material-icons-round text-[20px]">chat</span></button>
+                <button className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-all"><span className="material-icons-round text-[20px]">delete_outline</span></button>
               </div>
             </header>
 
-            <div className="flex flex-col items-center py-10 border-b border-gray-100 dark:border-gray-800">
-              <img src={selectedOtherUser.avatar || '/default-avatar.png'} className="w-28 h-28 rounded-full shadow-lg mb-4 object-cover ring-4 ring-white dark:ring-[#262626]" alt="Selected User" />
-              <h1 className="text-2xl font-bold">{selectedOtherUser.fullName}</h1>
-              <p className="text-sm text-gray-500 mb-8">{selectedOtherUser.role || 'Professional'}</p>
+            <div className="flex flex-col items-center py-10 px-4 border-b border-gray-100 dark:border-white/5">
+              <img src={selectedOtherUser.avatar || '/default-avatar.png'} className="w-28 h-28 rounded-full shadow-lg mb-4 object-cover border-4 border-white dark:border-[#262626]" alt="Selected User" />
+              <h1 className="text-2xl font-bold mb-1">{selectedOtherUser.fullName}</h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">{selectedOtherUser.role || 'Professional'}</p>
               
               <div className="flex gap-6">
                 <button className="flex flex-col items-center gap-2 group">
-                  <div className="w-14 h-14 rounded-full bg-[#7C3AED]/10 text-[#7C3AED] flex items-center justify-center group-hover:bg-[#7C3AED] group-hover:text-white transition-all">
-                    <span className="material-icons-round">call</span>
+                  <div className="w-14 h-14 rounded-full bg-[#7C3AED]/10 dark:bg-[#8B5CF6]/20 text-[#7C3AED] dark:text-[#8B5CF6] flex items-center justify-center group-hover:bg-[#7C3AED] group-hover:text-white transition-all shadow-sm">
+                    <span className="material-icons-round text-[24px]">call</span>
                   </div>
-                  <span className="text-xs font-semibold">Voice</span>
+                  <span className="text-xs font-semibold text-gray-600 dark:text-gray-300">Voice</span>
                 </button>
                 <button className="flex flex-col items-center gap-2 group">
-                  <div className="w-14 h-14 rounded-full bg-[#7C3AED]/10 text-[#7C3AED] flex items-center justify-center group-hover:bg-[#7C3AED] group-hover:text-white transition-all">
-                    <span className="material-icons-round">videocam</span>
+                  <div className="w-14 h-14 rounded-full bg-[#7C3AED]/10 dark:bg-[#8B5CF6]/20 text-[#7C3AED] dark:text-[#8B5CF6] flex items-center justify-center group-hover:bg-[#7C3AED] group-hover:text-white transition-all shadow-sm">
+                    <span className="material-icons-round text-[24px]">videocam</span>
                   </div>
-                  <span className="text-xs font-semibold">Video</span>
+                  <span className="text-xs font-semibold text-gray-600 dark:text-gray-300">Video</span>
                 </button>
               </div>
             </div>

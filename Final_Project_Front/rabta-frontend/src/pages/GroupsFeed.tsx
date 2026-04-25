@@ -1,7 +1,7 @@
 // src/pages/GroupsFeed.tsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../api/axiosInstance';
 import { ChatWindow } from '../components/chat/ChatWindow';
 
 // ==========================================
@@ -45,46 +45,13 @@ export const GroupsFeed = () => {
     const fetchGroups = async () => {
       try {
         setIsLoading(true);
-        const token = localStorage.getItem('test_token') || "";
-        
-        // ⚠️ Endpoint لاسترجاع قائمة الجروبات
-        const response = await axios.get<GroupsApiResponse>(
-          'http://localhost:5000/api/v1/groups',
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
+        const response = await axiosInstance.get<GroupsApiResponse>('/v1/groups');
         
         setGroups(response.data.data || []);
       } catch (err) {
-        console.error("Error fetching groups:", err);
-        // 💡 داتا وهمية للاختبار لحين ربط الباك-إند
-        setGroups([
-          {
-            _id: "g1",
-            name: "Node.js Masters",
-            category: "Back-End",
-            avatar: "https://ui-avatars.com/api/?name=Node+Js&background=7C3AED&color=fff",
-            lastMessage: "Discussion about Event Loop...",
-            lastMessageTime: "10:30 AM",
-            unreadCount: 12
-          },
-          {
-            _id: "g2",
-            name: "React Ecosystem",
-            category: "Front-End",
-            avatar: "https://ui-avatars.com/api/?name=React&background=FDBA74&color=fff",
-            lastMessage: "Best patterns for State Management",
-            lastMessageTime: "Yesterday",
-            unreadCount: 0
-          },
-          {
-            _id: "g3",
-            name: "Figma UI Kit",
-            category: "UI/UX",
-            avatar: "https://ui-avatars.com/api/?name=Figma&background=262626&color=fff",
-            lastMessage: "Check out the new design system.",
-            lastMessageTime: "2 Days ago"
-          }
-        ]);
+
+        // 💡 لا نضيف داتا وهمية - الـ UI هيعرض Empty State
+        setGroups([]);
       } finally {
         setIsLoading(false);
       }
@@ -159,7 +126,13 @@ export const GroupsFeed = () => {
           {isLoading ? (
              <p className="text-center p-4 text-gray-400 animate-pulse text-sm">Loading communities...</p>
           ) : filteredGroups.length === 0 ? (
-             <p className="text-center p-8 text-gray-400 text-sm">No communities found.</p>
+             <div className="flex flex-col items-center justify-center p-8 text-center">
+               <div className="w-16 h-16 bg-gray-100 dark:bg-[#262626] rounded-full flex items-center justify-center mb-4">
+                 <span className="material-icons-round text-3xl text-gray-300 dark:text-gray-600">groups</span>
+               </div>
+               <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">No groups available</p>
+               <p className="text-xs text-gray-400 dark:text-gray-500">Create a new community or adjust your filters.</p>
+             </div>
           ) : (
             filteredGroups.map((group) => {
               const isActive = activeGroup?._id === group._id;

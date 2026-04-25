@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios, { type AxiosResponse } from "axios";
+import { type AxiosResponse, isAxiosError } from "axios";
+import axiosInstance from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 // ==========================================
 // 1. Interfaces
@@ -52,7 +53,7 @@ export const JobsBoard: React.FC = () => {
     try {
       setIsLoading(true);
       setError(null); // تصفير الأخطاء مع كل طلب جديد
-      const token = localStorage.getItem("test_token") || "";
+      const token = localStorage.getItem("token") || "";
 
       const params = new URLSearchParams({
         search: searchQuery,
@@ -63,9 +64,8 @@ export const JobsBoard: React.FC = () => {
         sort: sortOption,
       });
 
-      const response: AxiosResponse<JobsApiResponse> = await axios.get(
-        `http://localhost:5000/api/v1/jobs?${params.toString()}`,
-        { headers: { Authorization: `Bearer ${token}` } },
+      const response: AxiosResponse<JobsApiResponse> = await axiosInstance.get(
+        `/v1/jobs?${params.toString()}`
       );
 
       // 💡 استقبال الداتا الحقيقية فقط
@@ -73,15 +73,15 @@ export const JobsBoard: React.FC = () => {
       setTotalPages(response.data.data.totalPages || 1);
     } catch (err: unknown) {
       // 💡 تسجيل الخطأ الحقيقي من الباك-إند بدون أي داتا ثابتة
-      if (axios.isAxiosError(err)) {
+      if (isAxiosError(err)) {
         const errorMessage =
           err.response?.data?.message ||
           "Failed to fetch jobs. Please try again.";
         setError(errorMessage);
-        console.error("Error fetching jobs:", errorMessage);
+
       } else {
         setError("An unexpected error occurred.");
-        console.error("Unexpected Error:", err);
+
       }
       setJobs([]); // التأكد إن القائمة فاضية في حالة الخطأ
     } finally {
@@ -298,10 +298,6 @@ export const JobsBoard: React.FC = () => {
               <h2 className="text-xl font-bold tracking-tight text-[#1F1F1F] dark:text-[#F5F5F5]">
                 {jobs.length} Projects Found
               </h2>
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-xl font-bold tracking-tight text-[#1F1F1F] dark:text-[#F5F5F5]">
-                  {jobs.length} Projects Found
-                </h2>
 
                 {/* 💡 قائمة الترتيب التفاعلية (Dropdown) */}
                 <div className="relative">
@@ -349,7 +345,6 @@ export const JobsBoard: React.FC = () => {
                     </div>
                   )}
                 </div>
-              </div>
             </div>
 
             {/* 💡 التحكم في الحالات: تحميل، خطأ، لا يوجد داتا، عرض الداتا */}
@@ -384,6 +379,7 @@ export const JobsBoard: React.FC = () => {
               jobs.map((job) => (
                 <article
                   key={job._id}
+                  onClick={() => navigate(`/jobs/${job._id}`)}
                   className="bg-white dark:bg-[#1E1E1E] rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 p-8 border border-[#8B5CF6]/5 dark:border-[#8B5CF6]/10 group cursor-pointer relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-[#8B5CF6] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>

@@ -19,11 +19,20 @@ import { CallsPage } from "./pages/CallsPage";
 // استدعاء صفحات الجروبات
 import CreateGroup from './components/Groups/CreateGroup'; 
 import JoinGroup from './components/Groups/JoinGroup';
+import GroupDetails from './components/Groups/GroupDetails';
 import { ViewContact } from './pages/ViewContact';
 import { SharedContent } from './pages/SharedContent';
-// 💡 استدعاء صفحات الوظائف (اللي كانت ناقصة)
+// 💡 استدعاء صفحات الوظائف
 import { JobsBoard } from "./pages/JobsBoard";
 import { JobDetails } from "./pages/JobDetails";
+// 💡 صفحة تفاصيل البوست
+import { PostDetails } from "./pages/PostDetails";
+// 💡 صفحة الخصوصية
+import { Privacy } from "./pages/Privacy";
+// 💡 صفحات الشركات / العملاء
+import { EmployerProfile } from "./pages/EmployerProfile";
+import { EmployerSetupProfile } from "./pages/EmployerSetupProfile";
+import { ProjectDetails } from "./pages/ProjectDetails";
 
 function App() {
   return (
@@ -43,21 +52,30 @@ function App() {
         
         {/* مسارات الجروبات */}
         <Route path="/groups" element={<GroupsFeed />} />
+        <Route path="/groups/:id" element={<GroupDetails />} />
+        <Route path="/groups/:id/chat" element={<GroupDetails />} />
         <Route path="/create-group" element={<CreateGroup />} />
         <Route path="/join-group" element={<JoinGroup />} />
         
-        {/* 💡 مسارات الوظائف */}
+        {/* 💡 مسار تفاصيل البوست */}
+        <Route path="/posts/:postId" element={<PostDetails />} />
+        
         <Route path="/jobs" element={<JobsBoard />} />
         <Route path="/jobs/:jobId" element={<JobDetails />} />
+        <Route path="/projects/:projectId" element={<ProjectDetails />} />
+        <Route path="/employer/:employerId" element={<EmployerProfile />} />
+        <Route path="/employer-setup" element={<EmployerSetupProfile />} />
         <Route path="/calls" element={<CallsPage />} />
         <Route path="/contact" element={<ViewContact />} />
-<Route path="/shared-content" element={<SharedContent />} />
+        <Route path="/shared-content" element={<SharedContent />} />
+
         {/* مسارات البروفايل */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/setup-profile" element={<SetupProfile />} />
         <Route path="/bookmarks" element={<SavedContent />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
 

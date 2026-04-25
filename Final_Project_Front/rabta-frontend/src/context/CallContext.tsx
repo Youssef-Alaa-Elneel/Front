@@ -108,7 +108,7 @@ export const CallProvider = ({ children }: { children: ReactNode }) => {
 
       connectionRef.current = peer;
     } catch (err) {
-      console.error("❌ Camera access error:", err);
+
       setIsCalling(false);
     }
   };
@@ -147,7 +147,7 @@ export const CallProvider = ({ children }: { children: ReactNode }) => {
       }
       connectionRef.current = peer;
     } catch (err) {
-       console.error("❌ Camera access denied during answer", err);
+
     }
   };
 
